@@ -5,12 +5,12 @@
     >
       <div class="w-2/3 text-center">
 
-              <img src="https://static.wixstatic.com/media/11062b_cb3c8c5d631140b5bb5d1957a030848c~mv2.jpg/v1/fill/w_660,h_500,al_c,q_85,usm_0.66_1.00_0.01/11062b_cb3c8c5d631140b5bb5d1957a030848c~mv2.webp" class="mx-auto w-40 rounded-lg object-cover h-40">
- 
+        <div class="h-40 w-40 bg-transparent mx-auto rounded-lg flex items-center justify-center">
+              <img src="https://res.cloudinary.com/web-books/image/upload/c_limit,f_auto,fl_lossy,h_1600,q_auto,w_1600/v1/wb_data/team_98/20220928_111107_3c273dc8_logo6341185-md_42fe713a7ea230a7b043ae854e042bdc" class="mx-auto w-32 rounded-lg">
+            </div>
 
         <h1 class="text-white header-bold text-3xl mt-6">
-          Private Label Manufacturing Business<br />
-          – Oral Care & Beauty Products
+Luxury Caravan Hire
         </h1>
         <div class="w-1/2 mx-auto mt-4">
           <h2 class="text-white text-sm">
@@ -58,5 +58,7 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+};
 </script>

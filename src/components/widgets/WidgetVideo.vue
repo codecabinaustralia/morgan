@@ -1,0 +1,16 @@
+<template>
+    <section class="my-20">
+        <iframe width="100%" height="450" :src="'https://www.youtube.com/embed/' + asset.value.text" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+
+
+    </section>
+</template>
+
+<script>
+  export default {
+      props: ["asset"]
+  };
+  </script>

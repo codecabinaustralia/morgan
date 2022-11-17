@@ -868,3 +868,9 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.skiptranslate{
+  display: none !important
+}
+</style>
