@@ -1,37 +1,13 @@
 <template>
-  <div class="w-full shadow-lg">
-    <div class="flex h-20 bg-white items-center container mx-auto px-10">
+  <div class="w-full shadow-lg bg-white">
+    <div class="flex h-20 bg-white items-center mx-auto px-6 bg-black">
 
       <div class="flex-shrink mr-auto">
         <img width="200" src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif"
           alt="Morgan Business Sales" />
       </div>
 
-      <div class="flex-shrink relative">
-
-
-
-        <div @click="showTranslation = !showTranslation" class="w-70 mr-2 ">
-          <div class="w-full hover:bg-gray-100 cursor-pointer bg-white p-3 flex space-x-2 rounded-lg shadow-lg">
-            <div class="flex-shrink">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
-                class="w-10 h-10 object-cover" alt="">
-            </div>
-
-            <div class="flex-grow h-10 flex items-center">
-              <h2 class="text-vgray text-sm">Translate this page</h2>
-            </div>
-          </div>
-        </div>
-
-        <div :class="!showTranslation ? 'hidden' : ''" class="absolute top-0 left-0 z-50 rounded-xl mt-12" style="width: 300%">
-          <Translator class="bg-white rounded shadow-lg h-96 overflow-y-scroll" />
-        </div>
-
-
-      </div>
-
-      <div class="flex-shrink mr-2">
+      <div class="flex-shrink mr-2 ml-auto">
         <img
           :src="agent.avatar"
           alt="brocker" class="w-14 h-14 rounded object-cover">
@@ -61,14 +37,14 @@
 </template>
 
 <script>
-import { Translator } from 'vue-google-translate';
+
 import { bus } from '../../main'
 
 export default {
   props:['agent'],
   data() {
     return {
-      showTranslation: false,
+      
       navItems: [
         {
           title: "Aquisitions",
@@ -97,9 +73,6 @@ export default {
     showEnquire(){
       bus.$emit('toggleView', 'showContactForm');
     }
-  },
-  components: {
-    Translator
   }
 }
 </script>

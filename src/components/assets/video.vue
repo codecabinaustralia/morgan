@@ -14,7 +14,8 @@
         </div>
         <div class="w-full flex relative mb-2 p-6">
                 <div class="w-full relative">
-                    <input v-model="value.text" type="text" placeholder="Youtube url" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                    <input v-model="value.text" type="text" placeholder="v1i-DC5JkME" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                    <div class="text-sm text-gray-600">example: https://www.youtube.com/watch?v=<span class="bg-yellow-400 text-gray-800">v1i-DC5JkME</span></div>
                 <div class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">Youtube Video Id</div>
                 </div>
             </div>

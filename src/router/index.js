@@ -22,6 +22,7 @@ import CompanySettings from '../views/admin/CompanySettings.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import ResetPassword from '../views/ResetPassword.vue'
+import PdfPrint from '../views/admin/PdfPrint.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/PdfPrint',
+    name: 'PdfPrint',
+    component: PdfPrint
   },
   {
     path: '/preview',
@@ -127,7 +133,7 @@ const routes = [
     component: ResetPassword
   },
   {
-    path: '/listing',
+    path: '/listing/:id',
     name: 'Listing',
     component: Listing
   },

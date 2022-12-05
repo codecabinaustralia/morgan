@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="w-full my-20">
+    <div class="w-full my-10">
       <h1 v-if="asset.value.type == 'Header 1'" class="header-bold text-4xl text-vgreen">{{ asset.value.text }}</h1>
       <h2 v-if="asset.value.type == 'Header 2'" class="header-bold text-3xl text-vgreen">{{ asset.value.text }}</h2>
       <h3 v-if="asset.value.type == 'Header 3'" class="header-bold text-2xl text-vgreen">{{ asset.value.text }}</h3>

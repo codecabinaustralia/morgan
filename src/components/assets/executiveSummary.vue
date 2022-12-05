@@ -13,6 +13,11 @@
             <h2 class="text-vgray text-lg">Add {{ asset.title }}</h2>
         </div>
 
+        <div class="w-full px-6 mt-6">
+                <label class="text-sm text-gray-500">Title</label>
+                <input type="text" v-model="value.title" class="input w-full outline-none focus:text-vgreen focus:border-vgreen">
+            </div>
+
         <div class="w-full flex relative p-6 space-x-4" v-for="(i, index) in value.items" :key="index">
             <div class="flex-grow h-14 flex items-center">
                 <div class="w-full">
@@ -53,6 +58,7 @@ export default {
     data() {
         return {
             value: {
+                title: "",
                 items: [{
                     label: "",
                     value: ""

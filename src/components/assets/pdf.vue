@@ -12,12 +12,13 @@
 
             <h2 class="text-vgray text-lg">Add {{asset.title}}</h2>
         </div>
-        <div class="w-full flex relative mb-2 p-6">
-        
-    <VueTrix v-model="value.text" placeholder="Enter content" class="w-full h-56 text-sm text-vgray" />
-
-
+        <div class="w-full flex  mb-2 p-6">
+            <div class="w-full relative">
+                <input v-model="value.text" type="text" placeholder="http://" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                <div class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">PDF url</div>
             </div>
+        </div>
+
 
             <div class="w-full h-16 bg-gray-100 text-center mt-3 flex items-center justify-end px-6">
                 <span @click="saveItem()" class="bg-vgreen rounded py-2 px-4 text-sm text-white header-medium cursor-pointer hover:bg-green-600"> Save Widget</span>
@@ -27,18 +28,15 @@
 
 <script>
     import { bus } from '../../main'
-    import VueTrix from "vue-trix";
-
     export default {
         props:["asset"],
         data(){
-            return {
-                value: {
-                    text: ""
-                }
+        return{
+            value: {
+                text: ""
             }
-        },
-
+        }
+    },
     methods: {
         saveItem(){
             bus.$emit('saveWidget', this.value); 
@@ -47,21 +45,8 @@
             close(){
                 bus.$emit('toggleAsset', null);
             }
-        },
-        components:{
-            VueTrix
-        },
-        created(){
+        },created(){
         if(this.asset.value) this.value = this.asset.value
     }
     }
-    
 </script>
-
-<style lang="postcss">
-trix-editor {
-    height: 150px !important;
-    max-height: 150px !important;
-      overflow-y: auto !important;
-}
-</style>

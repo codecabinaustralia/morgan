@@ -12,11 +12,24 @@
 
             <h2 class="text-vgray text-lg">Add {{ asset.title }}</h2>
         </div>
-        <div class="w-full flex relative mb-2 p-6">
+        <div class="w-full flex flex-wrap relative mb-2 p-6">
+            <h2 class="text-xs text-vgreen mb-2">Select an agent</h2>
             <select v-model="value.form" class="input outline-none focus:text-vgreen focus:border-vgreen">
                 <option v-for="(f, index) in forms" :key="index" :value="f">{{ f.firstName }} {{ f.lastName }}</option>
             </select>
         </div>
+        
+        <div class="w-full relative mb-2 mx-6">
+                <input v-model="value.link" type="text" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                <div class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-2 px-2">
+                    Link</div>
+            </div>
+
+            <div class="w-full relative mb-2 mx-6">
+                <textarea v-model="value.text" type="text" rows="10" class=" p-6 input h-40 outline-none focus:text-vgreen focus:border-vgreen"></textarea>
+                <div class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-2 px-2">
+                     Text</div>
+            </div>
 
         <div class="w-full h-16 bg-gray-100 text-center mt-3 flex items-center justify-end px-6">
             <span @click="saveItem()"
@@ -38,7 +51,9 @@ export default {
             loading: false,
             forms: [],
             value: {
-                form: ""
+                form: "",
+                link: "",
+                text: ""
             }
         }
     },

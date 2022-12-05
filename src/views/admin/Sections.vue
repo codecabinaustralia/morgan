@@ -1,5 +1,39 @@
 <template>
     <div class="w-full flex">
+        
+        <div v-if="showLink" style="z-index: 9999999999" class=" w-full h-screen fixed bg-gray-900 bg-opacity-25 flex items-center justify-center">
+            <div class="w-96 bg-white rounded-xl p-6 shadow-lg relative">
+                <div @click="showLink = false, getLinks()" class="absolute top-0 right-0 m-4 cursor-pointer hover:text-gray-900 text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </div>
+                <h2 v-if="!loadingLink" class="header-medium text-gray-800">Generate a new link</h2>
+                
+                <div v-if="!loadingLink" class="w-full flex flex-wrap">
+                    <div class="w-full flex relative mt-6">
+                    <input v-model="linkTitle" type="text" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                    <div
+                        class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                        Link Title</div>
+                </div>
+
+                <div v-if="loadingLink" class="w-full h-full flex items-center justify-center">
+                    <preloader class="bg-white rounded-lg p-4 h-20 w-20 mx-auto flex items-center justify-center" />
+                </div>
+
+                <div v-if="haveLink && !loadingLink" class="w-full my-4 bg-blue-100 rounded-lf px-4 py-2 text-sm text-blue-600">
+                    <h2 class="truncate">https://morganbusinesssales.com/{{haveLink}}</h2>
+                </div>
+
+                <div v-if="!loadingLink" class="w-full mt-4 text-center">
+                    <div @click="generateLink()"
+                        class="bg-vgreen rounded py-4 px-10 text-sm text-white header-medium cursor-pointer hover:bg-green-600">
+                        Generate Link</div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+
         <admin-sidebar />
         <div class="flex-grow bg-gray-100 h-screen">
             <admin-primary />
@@ -7,12 +41,14 @@
                 <div v-if="loading" class="w-full flex items-center mt-20">
                 <preloader class="bg-white rounded-lg p-4 h-20 w-20 mx-auto flex items-center justify-center" />
             </div>
-                <div v-if="!loading" class="w-full mr-4 mb-4 bg-white rounded-lg p-4">
+                <div v-if="!loading" class="w-3/4 mr-4 mb-4 bg-white rounded-lg p-4">
                     <h2 class="header-semiBold text-vgrayDark mb-2">Web Book Details</h2>
                     <input type="text" v-model="item.title" placeholder="Web Book title" class="my-2 input">
                 </div>
+                <div class="w-1/4"></div>
                 <div class="flex w-full">
                 <div v-if="!loading" class="w-3/4 mr-4 bg-white rounded-lg p-4">
+
                     <div class="flex w-full">
                         <div class="flex-shrink">
                             <h2 class="header-semiBold text-vgrayDark">Sections</h2>
@@ -84,6 +120,38 @@
                             </draggable>
                        
                     </table>
+
+                    <div class="w-full flex flex-wrap border-t border-gray-300 pt-10 mt-10">
+                        <div class="flex-grow">
+                            <h2 class="header-semiBold text-vgrayDark">Links</h2>
+                        </div>
+                        <div class="flex-shrink">
+                            <span @click="showLink = true"
+                            class="bg-blue-600 mb-2 w-full rounded block py-2 px-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
+                            Generate Link</span>
+                        </div>
+                        <div v-if="(links.length > 0)" class="w-full my-2 flex flex-wrap" v-for="(l, lIndex) in links" :key="('l'+lIndex)">
+                            <div class="w-1/4 text-sm text-gray-600">
+                                {{l.title}}
+                            </div>
+                            <div class="w-2/4 text-blue-600 text-xs cursor-pointer hover:text-blue-800">
+                                <h2 class="truncate">https://morganbusinesssales.com/{{l.link}}</h2>
+                            </div>
+                            <div class="w-1/4 flex justify-end space-x-2">
+                                <div class="flex-shrink">
+                                    <span class="bg-purple-100 text-purple-500 text-xs rounded-full px-2 py-1">
+                                        {{l.visitors}} visitors
+                                    </span>
+                                </div>
+                                <div class="flex-shrink" @click="destroyLink(lIndex)">
+                                    <svg class="w-4 h-4 text-red-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="(links.length == 0)" @click="showLink = true" class="w-full my-4 text-center text-gray-600 bg-gray-100 rounded-lg px-4 py-2 text-sm" >
+                            There are no links generated yet - <span class="text-blue-600 cursor-pointer hover:text-blue-800">would you like to generate one now?</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div v-if="!loading" class="w-1/4 ml-4 bg-white rounded-lg p-4">
@@ -96,7 +164,7 @@
                             class="bg-vgreen mb-4 rounded p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-green-600">
                             Save Web Book</div>
 
-                            <div class="w-full">
+                            <div class="w-full mb-2">
                                 <h2 class="text-vgray text-sm">Assigned Agent</h2>
                 
                     <select v-model="item.agent" name="" class="input" id="">
@@ -106,7 +174,7 @@
                     </select>
                 </div>
                 
-                            <div class="w-full mt-4">
+                            <div class="w-full mt-4 mb-2">
                                 <h2 class="text-vgray text-sm">Status</h2>
                     <select v-model="item.status" name="" class="input" id="">
                         <option>Active</option>
@@ -140,16 +208,24 @@ import VueTagsInput from '@johmun/vue-tags-input';
     import AdminSidebar from "@/components/navs/adminSidebar"
     import AdminPrimary from "@/components/navs/adminPrimary"
     import draggable from 'vuedraggable'
-    import { collection, query, where, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
+
+    import { collection, addDoc, query, deleteDoc, where, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase.js";
 import Preloader from "@/components/loader"
     export default {
         data(){
             return{
+                showLink: false,
+                haveLink: '',
+                linkTitle: '',
+                loadingLink: false,
                 trash: false,
                 loading: false,
                 item: null,
-                agents: []
+                agents: [],
+                links: [
+                    
+                ]
             }
         },
         computed:{
@@ -161,6 +237,46 @@ import Preloader from "@/components/loader"
             }
         },
         methods:{
+            async generateLink(){
+                this.loadingLink = true
+                const myUid = this.webbookId + '--' + (this.links.length + 1)
+                const payload = {
+                    title: this.linkTitle,
+                    link: myUid,
+                    webbookId: this.webbookId,
+                    visitors: 0
+                }
+
+                await addDoc(collection(db, "links"), payload)
+
+                this.haveLink = myUid
+                this.loadingLink = false
+                
+            },
+
+            async destroyLink(index){
+                await deleteDoc(doc(db, "links", this.links[index].id));
+                this.links.splice(index, 1)
+            },
+
+            async getLinks(){
+                // reset items and set loader
+            this.loading = true
+            // get data
+            const q = query(collection(db, "links"), where("webbookId", "==", this.webbookId));
+            const querySnapshot = await getDocs(q);
+            console.log("get links", querySnapshot.length)
+            querySnapshot.forEach((doc) => {
+                // Create data obj
+                let obj = doc.data()
+                this.$set(obj, "id", doc.id)
+                // push items to array
+                this.links.push(obj)
+            });
+            // finish loading
+            this.loading = false
+            },
+
             async getAgents() {
             // reset items and set loader
             this.items = []
@@ -226,10 +342,14 @@ import Preloader from "@/components/loader"
             preview(){
             this.$store.commit("updateState", {state: "preview", body: this.item})
             let routeData = this.$router.resolve({name: 'Preview'})
+            console.log("routeData", routeData)
             window.open(routeData.href, '_blank');
+
+            
         },
         },
         created(){
+            this.getLinks()
             this.getWebbook()
         },
         components:{

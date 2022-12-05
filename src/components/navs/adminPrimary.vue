@@ -21,7 +21,7 @@
         <div class="flex-shrink ml-auto h-full flex items-center mr-4">
             <router-link class="text-vgray text-sm hover:text-vgreen" to="/">View Site</router-link>
         </div>
-        <div class="flex-shrink ml-4 h-full flex items-center mr-4">
+        <div @click="logout()" class="flex-shrink ml-4 h-full flex items-center mr-4">
             <span :style="currentTenant.primaryColor ? `background-color:${currentTenant.primaryColor}`: ''" class="bg-vgreen rounded p-2 text-sm text-white header-medium cursor-pointer hover:bg-green-600">
                 Logout</span>
         </div>
@@ -34,6 +34,15 @@
 export default {
     data() {
         return {}
+    },
+    methods:{
+        logout(){
+            this.$store.commit("updateState", {state: 'currentUser', body: null})
+            this.$store.commit("updateState", {state: 'preview', body: null})
+            this.$store.commit("updateState", {state: 'currentTenant', body: null})
+
+            this.$router.push({name: 'SignIn'})
+        }
     },
     computed: {
         currentTenant() {

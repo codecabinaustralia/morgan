@@ -16,7 +16,7 @@
                 </div>
                 <div class="w-96 bg-white shadow-lg p-10 rounded-xl">
                     <h2 class="header-bold text-2xl text-vgreen">Enquire Now</h2>
-                    <p class="text-vgray mt-2">Leave an enquiry with {{ agent.fistName }} {{ agent.lastName }}. You can
+                    <p class="text-vgray mt-2">Leave an enquiry with {{ agent.firstName }} {{ agent.lastName }}. You can
                         expect a call back within 48 hrs.</p>
 
                     <div class="w-full mt-4">
@@ -59,8 +59,8 @@
         </div>
 
         <!-- Nav  -->
-        <div class="w-full fixed" v-if="!loading && passedValidation">
-            <listing-nav :agent="agent" />
+        <div class="w-full fixed" style="z-index: 999999999999999999999999999999999999" v-if="!loading && passedValidation">
+            <listing-nav :agent="agent" v-if="agent" />
         </div>
 
         <!-- Password Modal  -->
@@ -106,7 +106,7 @@
 
         <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
             <div class="flex-shrink">
-                <div class="h-screen fixed w-56 bg-gray-100 shadow-lg z-10 pt-0 text-sm">
+                <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
                     <div class="w-full" v-for="(section, index) in item.sections" :key="index">
                         <span @click="scrollMeTo(section.title)" v-if="section.status == 'Active'"
                             :class="section.title == currentSection ? 'bg-vgreen text-white' : 'hover:bg-gray-200 cursor-pointer'"
@@ -115,13 +115,37 @@
                 </div>
             </div>
 
+            <div @click="showTranslation = !showTranslation" style="z-index: 9999999999999999999999" class="fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4">
+          <div class="w-full hover:bg-gray-100 cursor-pointer bg-white p-3 flex space-x-2 rounded-lg shadow-lg">
+            <div class="flex-shrink">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
+                class="w-10 h-10 object-cover" alt="">
+            </div>
+
+            <div class="flex-grow h-10 flex items-center">
+              <h2 class="text-vgray text-sm">Change language</h2>
+            </div>
+          </div>
+        </div>
+
+        <div :class="!showTranslation ? 'hidden' : ''" style="z-index: 9999999999999999999999;" class="fixed bg-gray-900 bg-opacity-90 top-0 left-0 z-50 h-screen w-full">
+          <div class="w-full h-full flex items-center justify-center">
+            <div class="w-1/2" @click="(showTranslation = false)">
+                <Translator class="bg-white rounded shadow-lg h-96 overflow-y-scroll" />
+            </div>
+          </div>
+        </div>
+
+
+
             <div class="flex-grow pl-56">
-                <div class="w-full bg-white flex">
+                
+            <div class="w-full bg-white flex">
                     <div class="container mx-auto justify-center">
                         <div class="w-full flex flex-wrap " v-for="(section, sIndex) in item.sections"
                             :key="sIndex + 's'">
                             <div class="w-full" :id="toSlug(section.title)">
-                                <div class="w-full flex flex-wrap" v-for="(w, wIndex) in section.widgets"
+                                <div class="html2pdf__page-break w-full flex flex-wrap" v-for="(w, wIndex) in section.widgets"
                                     :key="wIndex + 'w'">
                                     <widget-hero :asset="w" v-if="w.type == 'hero'" class="w-full" />
                                     <widget-executive-summary :asset="w" v-if="w.type == 'executiveSummary'"
@@ -136,6 +160,7 @@
                                     <widget-image-gallery :asset="w" v-if="w.type == 'imageGallery'" class="w-full px-20" />
                                     <widget-image-gallery-list :asset="w" v-if="w.type == 'imageGalleryList'" class="w-full px-20" />
                                     <widget-cta :asset="w" v-if="w.type == 'cta'" class="w-full px-20" />
+                                    <widget-pdf :asset="w" v-if="w.type == 'pdf'" class="w-full px-20" />
                                     <widget-contact-form :asset="w" v-if="w.type == 'contactForm'"
                                         class="w-full px-20" />
                                     <widget-link :asset="w" v-if="w.type == 'link'" class="w-full px-20" />
@@ -146,6 +171,9 @@
                         </div>
                     </div>
                 </div>
+       
+          
+
 
                 <section class="w-full flex">
                     <div class="container mx-auto px-10 flex h-full items-center flex">
@@ -169,6 +197,7 @@
 </template>
   
 <script>
+import VueHtml2pdf from 'vue-html2pdf'
 
 import WidgetHero from "@/components/widgets/WidgetHero";
 import WidgetExecutiveSummary from "@/components/widgets/WidgetExecutiveSummary";
@@ -182,6 +211,7 @@ import WidgetImageText from "@/components/widgets/WidgetImageText";
 import WidgetImageGallery from "@/components/widgets/WidgetImageGallery";
 import WidgetImageGalleryList from "@/components/widgets/WidgetImageGalleryList";
 import WidgetCta from "@/components/widgets/WidgetCta";
+import WidgetPdf from "@/components/widgets/WidgetPdf";
 import WidgetContactForm from "@/components/widgets/WidgetContactForm";
 import WidgetLink from "@/components/widgets/WidgetLink";
 import WidgetMap from "@/components/widgets/WidgetMap";
@@ -190,18 +220,20 @@ import WidgetVideo from "@/components/widgets/WidgetVideo";
 import ListingNav from "@/components/navs/listingNav";
 import { doc, getDoc, collection, addDoc } from "firebase/firestore";
 import { db } from "../../firebase.js";
-
+import { Translator } from 'vue-google-translate';
 import { bus } from '../../main'
 
 export default {
     data() {
         return {
+            showTranslation: false,
+            agent: null,
             enquire: {
                 name: '',
                 email: '',
                 phone: ''
             },
-            showContactForm: true,
+            showContactForm: false,
             error: "",
             loading: true,
             item: null,
@@ -303,6 +335,9 @@ export default {
             } else {
                 this.loading = false
             }
+        },
+        generateReport() {
+            this.$refs.html2Pdf.generatePdf()
         }
     },
     created() {
@@ -312,6 +347,7 @@ export default {
         })
     },
     components: {
+        Translator,
         ListingNav,
         WidgetExecutiveSummary,
         WidgetHeader,
@@ -328,7 +364,9 @@ export default {
         WidgetLink,
         WidgetContactForm,
         WidgetMap,
-        WidgetVideo
+        WidgetVideo,
+        WidgetPdf,
+        VueHtml2pdf
     },
 };
 </script>

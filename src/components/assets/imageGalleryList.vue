@@ -12,16 +12,17 @@
 
             <h2 class="text-vgray text-lg">Add {{asset.title}}</h2>
         </div>
-        <div class="w-full flex flex-wrap relative mb-2 space-2 p-6">
+        <div class="w-full flex flex-wrap relative mb-2 space-x-2 space-y-2 p-6">
                 <div class="w-40" v-for="(v, index) in value.images" :key="index">
                     <img v-if="v" class="inline-block w-40 h-40 rounded shadow object-cover"
                         :src="v"
                         alt="">
+                        <div @click="removeImage(index)" class="cursor-pointer w-full text-center text-red-600 text-sm mt-2">Remove</div>
                     </div>
 
                 <div class="w-40 flex flex-wrap">
                     <img v-if="!imageLoading && !value.image" src="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" alt="placeholder" class="w-40 h-40 object-cover rounded shadow">
-                    <preloader v-if="imageLoading" />
+                    <preloader v-if="imageLoading" class="mx-auto" />
                    
 
                     <div class="w-full">
@@ -61,6 +62,9 @@
         }
     },
     methods: {
+        removeImage(index){
+            this.value.images.splice(index, 1)
+        },
         previewImage(event) {
             this.imageLoading = true
             this.uploadValue = 0;

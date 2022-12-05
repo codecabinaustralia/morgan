@@ -7,6 +7,14 @@ import './assets/tailwind.css';
 import "vue-trix";
 import VueQRCodeComponent from 'vue-qrcode-component'
 import InstantSearch from 'vue-instantsearch';
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCk2mQZ7g7MHwSE3b3bJXJeOpG71UHElek',
+    libraries: 'places'
+  },
+})
 
 Vue.use(InstantSearch);
 Vue.component('qr-code', VueQRCodeComponent)

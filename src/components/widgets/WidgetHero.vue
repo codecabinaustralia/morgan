@@ -5,8 +5,8 @@
       >
         <div class="w-2/3 text-center">
   
-          <div class="h-40 w-40 bg-transparent mx-auto rounded-lg flex items-center justify-center">
-                <img :src="asset.value.image" class="mx-auto w-32 rounded-lg">
+          <div class="h-64 w-64 bg-transparent mx-auto rounded-lg flex items-center justify-center">
+                <img :src="asset.value.image" class="mx-auto w-64 rounded-lg">
               </div>
   
           <h1 class="text-white header-bold text-3xl mt-6">
@@ -22,9 +22,9 @@
   
         <div class="w-full flex justify-center space-x-4 my-10">
           <div class="flex-shrink">
-              <div class="w-56 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
+              <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                   <div class="w-full text-center">
-                      <h2 class="text-3xl text-white header-bold">{{asset.value.stat1Value}}</h2>
+                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat1Value}}</h2>
                   <h3 class="text-white text-base">
                     {{asset.value.stat1Label}}
                   </h3>
@@ -32,9 +32,9 @@
               </div>
           </div>
           <div class="flex-shrink">
-              <div class="w-56 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
+              <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
-                      <h2 class="text-3xl text-white header-bold">{{asset.value.stat2Value}}</h2>
+                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat2Value}}</h2>
                   <h3 class="text-white text-base">
                     {{asset.value.stat2Label}}
                   </h3>
@@ -42,9 +42,9 @@
               </div>
           </div>
           <div class="flex-shrink">
-              <div class="w-56 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
+              <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
-                      <h2 class="text-3xl text-white header-bold">{{asset.value.stat3Value}}</h2>
+                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat3Value}}</h2>
                   <h3 class="text-white text-base">
                     {{asset.value.stat3Label}}
                   </h3>
