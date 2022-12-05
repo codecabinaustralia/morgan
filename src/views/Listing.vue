@@ -275,7 +275,6 @@ export default {
           });
       },
       async login() {
-          console.log("webbook", this.webhook)
           if (this.item.password == this.password) {
 
               await addDoc(collection(db, "webbooks", this.webbook.id, "visitors"), {
