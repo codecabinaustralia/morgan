@@ -116,7 +116,7 @@
 
                 <div class="w-1/4 pl-2">
                     <div v-if="!loading" class="bg-white rounded-lg p-4 w-full">
-                        <span @click="pdf()"
+                        <span @click="getJob()"
                             class="bg-blue-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
                             PDF</span>
                         <span @click="preview()"
@@ -161,6 +161,7 @@ import Preloader from "@/components/loader"
 export default {
     data() {
         return {
+            jobId: '',
             loading: false,
             field: false,
             currentAsset: null,
@@ -285,7 +286,12 @@ export default {
             window.open(routeData.href, '_blank');
         },
         async saveWebbook() {
-            await setDoc(doc(db, "webbooks", this.$route.params.id), this.webbook);
+            const pdf = await this.pdf()
+            let obj = this.webbook
+            if(this.webbook.pdfJobId) this.webbook.pdfJobId = pdf
+            else this.$set(obj, 'pdfJobId', pdf)
+
+            await setDoc(doc(db, "webbooks", this.$route.params.id), obj);
             this.getWebbook()
         },
         async getWebbook() {
@@ -309,6 +315,7 @@ export default {
             this.webbook.sections[this.sectionId].widgets.splice(index, 1)
         },
         pdf() {
+            return new Promise((resolve, reject) => {
             const payload = {
                 "url": `https://cozy-queijadas-99b809.netlify.app/#/listing/${this.webbook.id}--1?pdf=true`,
                 "delay": 10000
@@ -321,7 +328,25 @@ export default {
             }
 
             axios.post('https://api.cloudlayer.io/v2/url/pdf', payload, headers).then((response) => {
-                console.log('Response from email', response.data)
+                resolve(response.data.id)
+            })
+
+            
+        })
+        },
+        getJob(){
+
+            const payload = {
+                headers: {
+                    'X-API-Key': 'cl-c2d2048c5e3b4c299b4c72c629d0c40c'
+                },
+                params: {
+                "id": this.webbook.pdfJobId
+            }
+            }
+
+            axios.get(`https://api.cloudlayer.io/v2/jobs/${this.webbook.pdfJobId}`, payload).then((response) => {
+                if(response.data.assetUrl) window.open(response.data.assetUrl,'_blank')
             })
         }
     },
