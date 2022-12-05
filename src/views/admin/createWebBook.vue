@@ -348,7 +348,12 @@ export default {
             axios.get(`https://api.cloudlayer.io/v2/jobs/${this.webbook.pdfJobId}`, payload).then((response) => {
                 if(response.data.assetUrl) window.open(response.data.assetUrl,'_blank')
             })
-        }
+        },
+        // checkPDF(){
+        //     setInterval(() => {
+        //         if(!this.webbook.pdfLink) this.checkPDF() 
+        //     }, 5000)
+        // }
     },
     created() {
         this.getWebbook()
