@@ -104,8 +104,8 @@
       </div>
 
 
-      <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
-          <div v-if="!isPdf" class="flex-shrink">
+      <div v-if="!isPdf && !loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
+          <div class="flex-shrink">
               <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
                   <div class="w-full" v-for="(section, index) in item.sections" :key="index">
                       <span @click="scrollMeTo(section.title)" v-if="section.status == 'Active'"
@@ -115,7 +115,7 @@
               </div>
           </div>
 
-          <div v-if="!isPdf" @click="showTranslation = !showTranslation" style="z-index: 9999999999999999999999" class="fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4">
+          <div @click="showTranslation = !showTranslation" style="z-index: 9999999999999999999999" class="fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4">
         <div class="w-full hover:bg-gray-100 cursor-pointer bg-white p-3 flex space-x-2 rounded-lg shadow-lg">
           <div class="flex-shrink">
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
@@ -275,6 +275,7 @@ export default {
           });
       },
       async login() {
+          console.log("webbook", this.webhook)
           if (this.item.password == this.password) {
 
               await addDoc(collection(db, "webbooks", this.webbook.id, "visitors"), {
