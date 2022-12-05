@@ -153,18 +153,18 @@
                                   <widget-header :asset="w" v-if="w.type == 'header'" class="w-full px-20" />
                                   <widget-agents :asset="w" v-if="w.type == 'agents'" class="w-full px-20" />
                                   <widget-text-area :asset="w" v-if="w.type == 'textArea'" class="w-full px-20" />
-                                  <widget-iframe :asset="w" v-if="w.type == 'iFrame'" class="w-full px-20" />
-                                  <widget-form :asset="w" v-if="w.type == 'form'" class="w-full px-20" />
+                                  <widget-iframe :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'iFrame'" class="w-full px-20" />
+                                  <widget-form :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'form'" class="w-full px-20" />
                                   <widget-image :asset="w" v-if="w.type == 'image'" class="w-full px-20" />
                                   <widget-image-text :asset="w" v-if="w.type == 'imageText'" class="w-full px-20" />
                                   <widget-image-gallery :asset="w" v-if="w.type == 'imageGallery'" class="w-full px-20" />
                                   <widget-image-gallery-list :asset="w" v-if="w.type == 'imageGalleryList'" class="w-full px-20" />
                                   <widget-cta :asset="w" v-if="w.type == 'cta'" class="w-full px-20" />
-                                  <widget-pdf :asset="w" v-if="w.type == 'pdf'" class="w-full px-20" />
-                                  <widget-contact-form :asset="w" v-if="w.type == 'contactForm'"
+                                  <widget-pdf :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'pdf'" class="w-full px-20" />
+                                  <widget-contact-form :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'contactForm'"
                                       class="w-full px-20" />
                                   <widget-link :asset="w" v-if="w.type == 'link'" class="w-full px-20" />
-                                  <widget-video :asset="w" v-if="w.type == 'video'" class="w-full px-20" />
+                                  <widget-video :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'video'" class="w-full px-20" />
                                   <widget-map :asset="w" v-if="w.type == 'map'" class="w-full px-20" />
                               </div>
                           </div>
