@@ -310,7 +310,8 @@ export default {
         },
         pdf() {
             const payload = {
-                "url": "https://google.com"
+                "url": "https://cozy-queijadas-99b809.netlify.app/#/listing/gMLYbDxm2IuwVTrS0RY4--1?pdf=true",
+                "delay": 10000
             }
 
             const headers = {

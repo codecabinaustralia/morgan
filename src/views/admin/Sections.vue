@@ -21,7 +21,7 @@
                 </div>
 
                 <div v-if="haveLink && !loadingLink" class="w-full my-4 bg-blue-100 rounded-lf px-4 py-2 text-sm text-blue-600">
-                    <h2 class="truncate">https://morganbusinesssales.com/{{haveLink}}</h2>
+                    <h2 class="truncate">https://cozy-queijadas-99b809.netlify.app/#/{{haveLink}}</h2>
                 </div>
 
                 <div v-if="!loadingLink" class="w-full mt-4 text-center">
@@ -135,7 +135,7 @@
                                 {{l.title}}
                             </div>
                             <div class="w-2/4 text-blue-600 text-xs cursor-pointer hover:text-blue-800">
-                                <h2 class="truncate">https://morganbusinesssales.com/{{l.link}}</h2>
+                                <h2 class="truncate">https://cozy-queijadas-99b809.netlify.app/#/{{l.link}}</h2>
                             </div>
                             <div class="w-1/4 flex justify-end space-x-2">
                                 <div class="flex-shrink">

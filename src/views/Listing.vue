@@ -59,12 +59,12 @@
       </div>
 
       <!-- Nav  -->
-      <div class="w-full fixed" style="z-index: 999999999999999999999999999999999999" v-if="!loading && passedValidation">
+      <div v-if="!isPdf && !loading && passedValidation" class="w-full fixed" style="z-index: 999999999999999999999999999999999999">
           <listing-nav :agent="agent" v-if="agent" />
       </div>
 
       <!-- Password Modal  -->
-      <div v-if="!passedValidation" class="w-full bg-vgreen h-screen fixed z-50">
+      <div v-if="!isPdf && !passedValidation" class="w-full bg-vgreen h-screen fixed z-50">
           <div class="w-full h-full flex items-center justify-center">
               <div class="w-96 rounded-xl bg-white px-10 pb-10 shadow-lg">
 
@@ -104,7 +104,7 @@
       </div>
 
 
-      <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
+      <div v-if="!isPdf && !loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
           <div class="flex-shrink">
               <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
                   <div class="w-full" v-for="(section, index) in item.sections" :key="index">
@@ -128,7 +128,7 @@
         </div>
       </div>
 
-      <div :class="!showTranslation ? 'hidden' : ''" style="z-index: 9999999999999999999999;" class="fixed bg-gray-900 bg-opacity-90 top-0 left-0 z-50 h-screen w-full">
+      <div v-if="!isPdf" :class="!showTranslation ? 'hidden' : ''" style="z-index: 9999999999999999999999;" class="fixed bg-gray-900 bg-opacity-90 top-0 left-0 z-50 h-screen w-full">
         <div class="w-full h-full flex items-center justify-center">
           <div class="w-1/2" @click="(showTranslation = false)">
               <Translator class="bg-white rounded shadow-lg h-96 overflow-y-scroll" />
@@ -138,7 +138,7 @@
 
 
 
-          <div class="flex-grow pl-56">
+          <div :class="isPdf ? '' : 'pl-56'" class="flex-grow">
               
           <div class="w-full bg-white flex">
                   <div class="container mx-auto justify-center">
@@ -175,7 +175,7 @@
         
 
 
-              <section class="w-full flex">
+              <section  v-if="!isPdf" class="w-full flex">
                   <div class="container mx-auto px-10 flex h-full items-center flex">
                       <div class="flex-shrink mr-auto">
                           <img width="200"
@@ -243,6 +243,14 @@ export default {
           password: "",
           passedValidation: true,
       }
+  },
+  computed:{
+    isPdf(){
+      console.log('this.$route.query.pdf', this.$route.query.pdf)
+      let res = false
+      if(this.$route.query.pdf) res = true
+      return res
+    }
   },
   methods: {
       sendForm(){
