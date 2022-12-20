@@ -117,12 +117,12 @@
 
                 <div class="w-1/4 pl-2">
                     <div v-if="!loading" class="bg-white rounded-lg p-4 w-full">
-                        <span @click="testPDF()"
+                        <!-- <span @click="testPDF()"
                             class="bg-blue-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
                             TEST PDF</span>
                         <span @click="getJob()"
                             class="bg-blue-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
-                            PDF</span>
+                            PDF</span> -->
                         <span @click="preview()"
                             class="bg-yellow-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
                             Preview</span>
