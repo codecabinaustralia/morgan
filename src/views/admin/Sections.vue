@@ -42,7 +42,7 @@
                 <preloader class="bg-white rounded-lg p-4 h-20 w-20 mx-auto flex items-center justify-center" />
             </div>
                 <div v-if="!loading" class="w-3/4 mr-4 mb-4 bg-white rounded-lg p-4">
-                    <h2 class="header-semiBold text-vgrayDark mb-2">Web Book Details</h2>
+                    <h2 class="header-semiBold text-vgrayDark mb-2">Data Room Details</h2>
                     <input type="text" v-model="item.title" placeholder="Web Book title" class="my-2 input">
                 </div>
                 <div class="w-1/4"></div>
@@ -162,7 +162,7 @@
 
                     <div @click="saveItem()" :style="currentTenant.primaryColor ? `background-color:${currentTenant.primaryColor}`: ''"
                             class="bg-vgreen mb-4 rounded p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-green-600">
-                            Save Web Book</div>
+                            Save Data Room</div>
 
                             <div class="w-full mb-2">
                                 <h2 class="text-vgray text-sm">Assigned Agent</h2>

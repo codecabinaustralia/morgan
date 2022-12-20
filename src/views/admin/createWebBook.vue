@@ -129,7 +129,7 @@
                         <div @click="saveWebbook()"
                             :style="currentTenant.primaryColor ? `background-color:${currentTenant.primaryColor}` : ''"
                             class="bg-vgreen rounded p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-green-600">
-                            Save Web Book</div>
+                            Save Data Room</div>
                     </div>
                 </div>
             </div>

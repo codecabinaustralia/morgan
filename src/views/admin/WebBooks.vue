@@ -11,10 +11,10 @@
                 <div v-if="!loading" class="w-full bg-white rounded-lg p-4">
                     <div class="flex w-full">
                         <div class="flex-shrink">
-                            <h2 class="header-semiBold text-vgrayDark">Manage WebBooks</h2>
+                            <h2 class="header-semiBold text-vgrayDark">Manage Data Rooms</h2>
                         </div>
                         <div class="flex-shrink ml-auto">
-                            <span @click="createWebbook()" :style="currentTenant.primaryColor ? `background-color:${currentTenant.primaryColor}`: ''" class="bg-vgreen rounded p-2 text-sm text-white header-medium cursor-pointer hover:bg-green-600"> Add New Book</span>
+                            <span @click="createWebbook()" :style="currentTenant.primaryColor ? `background-color:${currentTenant.primaryColor}`: ''" class="bg-vgreen rounded p-2 text-sm text-white header-medium cursor-pointer hover:bg-green-600"> Add New Data Room</span>
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@
 
                         <tbody>
                             <tr v-if="items.length == 0">
-                                <td colspan="6" class="bg-gray-200 h-12 text-center text-sm">No web books found</td>
+                                <td colspan="6" class="bg-gray-200 h-12 text-center text-sm">No data rooms found</td>
                             </tr>
                             <tr v-if="items.length > 0" class="h-12" v-for="(i, index) in items" :key="index">
                                 <td class="pl-4 text-sm header-semiBold text-gray-500">
@@ -108,7 +108,7 @@ export default {
     methods: {
         async createWebbook(){
             const payload = {
-                title: "New Web Book",
+                title: "New Data Room",
                 client: "Test Client",
                 creator: this.currentUser.email,
                 createdAt: new Date(),
