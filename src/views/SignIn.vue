@@ -7,7 +7,7 @@
         <div v-else class="w-96 rounded-xl bg-white px-10 pb-10 shadow-lg">
 
 
-            <img src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif" alt="logo">
+            <img :src="require('@/assets/logo.png')" class="w-40 mx-auto my-4" alt="logo">
 
             <div class="w-full flex flex-wrap">
                 <div class="w-full flex relative">

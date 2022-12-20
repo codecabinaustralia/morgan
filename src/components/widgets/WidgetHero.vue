@@ -9,11 +9,11 @@
                 <img :src="asset.value.image" class="mx-auto w-64 rounded-lg">
               </div>
   
-          <h1 class="text-white header-bold text-3xl mt-6">
+          <h1 class="text-white print:text-black header-bold text-3xl mt-6">
             {{asset.value.title}}
           </h1>
           <div class="w-1/2 mx-auto mt-4">
-            <h2 class="text-white text-sm">
+            <h2 class="text-white print:text-black text-sm">
               {{asset.value.text}}
             </h2>
   
@@ -24,8 +24,8 @@
           <div class="flex-shrink">
               <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                   <div class="w-full text-center">
-                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat1Value}}</h2>
-                  <h3 class="text-white text-base">
+                      <h2 class="text-2xl text-white print:text-black  header-bold">{{asset.value.stat1Value}}</h2>
+                  <h3 class="text-white print:text-black text-base">
                     {{asset.value.stat1Label}}
                   </h3>
                   </div>
@@ -34,8 +34,8 @@
           <div class="flex-shrink">
               <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
-                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat2Value}}</h2>
-                  <h3 class="text-white text-base">
+                      <h2 class="text-2xl text-white print:text-black  header-bold">{{asset.value.stat2Value}}</h2>
+                  <h3 class="text-white print:text-black text-base">
                     {{asset.value.stat2Label}}
                   </h3>
                   </div>
@@ -44,8 +44,8 @@
           <div class="flex-shrink">
               <div class="w-64 h-36 text-center bg-black bg-opacity-10 rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
-                      <h2 class="text-2xl text-white header-bold">{{asset.value.stat3Value}}</h2>
-                  <h3 class="text-white text-base">
+                      <h2 class="text-2xl text-white print:text-black header-bold">{{asset.value.stat3Value}}</h2>
+                  <h3 class="text-white print:text-black text-base">
                     {{asset.value.stat3Label}}
                   </h3>
                   </div>

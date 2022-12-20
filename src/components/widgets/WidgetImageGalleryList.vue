@@ -1,9 +1,8 @@
 <template>
         <section class="my-20">
-                <div class="grid grid-cols-12 mt-10">
-                        <div class="col-span-12" v-for="(i, index) in asset.value.images" :key="index"><img :src="i"
-                            class=" w-full mx-auto object-cover"
-                            alt=""></div>
+                <div class="flex flex-wrap mt-10 w-full">
+                        <div :class="asset.value.display == 'Inline' ? 'inline-block' : 'block'" :style="{width: asset.value.width}" v-for="(i, index) in asset.value.images" :key="index"><img :src="i"
+                            class="object-cover"></div>
                 </div>
         </section>
 </template>

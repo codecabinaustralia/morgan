@@ -6,6 +6,9 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
       extend: {
+        screens: {
+          'print': { 'raw': 'print' },
+      },
         colors: {
             vgreen: '#097A4D',
             vgray: '#6F6F70',

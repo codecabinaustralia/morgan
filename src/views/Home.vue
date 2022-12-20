@@ -846,7 +846,7 @@
         <div class="flex-shrink mr-auto">
         <img
           width="200"
-          src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif"
+          :src="require('@/assets/logo.png')"
           alt="Morgan Business Sales"
         />
       </div>

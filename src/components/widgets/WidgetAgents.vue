@@ -2,7 +2,7 @@
     <div class="w-full">
         <section v-if="agent" class="w-full flex my-20 bg-gray-100 ">
         <div class="flex-shrink">
-            <img class="h-40 w-40 rounded-lg shadow-lg object-cover m-4  "
+            <img @error="setAltImg" class="h-40 w-40 rounded-lg shadow-lg object-cover m-4  "
                 :src="agent.avatar"
                 alt="agent">
         </div>
@@ -68,6 +68,9 @@ export default {
         }
     },
     methods: {
+         setAltImg(event) { 
+    event.target.src = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+},
         enquire(){
             bus.$emit('toggleView', 'showContactForm')
         },

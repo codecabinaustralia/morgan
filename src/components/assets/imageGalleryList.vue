@@ -12,6 +12,29 @@
 
             <h2 class="text-vgray text-lg">Add {{asset.title}}</h2>
         </div>
+        <div class="w-full my-2 mt-6 px-6 relative">
+            <select v-model="value.width" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                <option>25%</option>
+                <option>50%</option>
+                <option>75%</option>
+                <option>90%</option>
+                <option>100%</option>
+            </select>
+
+            <div
+                        class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                        Width</div>
+        </div>
+        <div class="w-full my-2 px-6 relative ">
+            <select v-model="value.display" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                <option>Inline</option>
+                <option>List</option>
+            </select>
+            
+                    <div
+                        class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                        Display Inline or List</div>
+        </div>
         <div class="w-full flex flex-wrap relative mb-2 space-x-2 space-y-2 p-6">
                 <div class="w-40" v-for="(v, index) in value.images" :key="index">
                     <img v-if="v" class="inline-block w-40 h-40 rounded shadow object-cover"
@@ -57,7 +80,9 @@
             imageData: null,
             uploadValue: -1,
             value: {
-                images: []
+                images: [],
+                width: "",
+                display: ""
             }
         }
     },

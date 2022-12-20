@@ -23,6 +23,7 @@
                 <assetLink v-if="currentAsset.widget.type == 'link'" :asset="currentAsset.widget" />
                 <assetVideo v-if="currentAsset.widget.type == 'video'" :asset="currentAsset.widget" />
                 <assetMap v-if="currentAsset.widget.type == 'map'" :asset="currentAsset.widget" />
+                <assetPageBreak v-if="currentAsset.widget.type == 'pageBreak'" :asset="currentAsset.widget" />
             </div>
         </div>
 
@@ -116,6 +117,9 @@
 
                 <div class="w-1/4 pl-2">
                     <div v-if="!loading" class="bg-white rounded-lg p-4 w-full">
+                        <span @click="testPDF()"
+                            class="bg-blue-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
+                            TEST PDF</span>
                         <span @click="getJob()"
                             class="bg-blue-500 mb-2 w-full rounded block p-4 text-center text-sm text-white header-medium cursor-pointer hover:bg-opacity-90">
                             PDF</span>
@@ -155,6 +159,7 @@ import assetImageGalleryList from "@/components/assets/imageGalleryList"
 import assetLink from "@/components/assets/link"
 import assetVideo from "@/components/assets/video"
 import assetMap from "@/components/assets/map"
+import assetPageBreak from "@/components/assets/pageBreak"
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../../firebase.js";
 import Preloader from "@/components/loader"
@@ -209,12 +214,12 @@ export default {
                     icon: "a",
                     value: ""
                 },
-                {
-                    title: "Image",
-                    type: "image",
-                    icon: "a",
-                    value: ""
-                },
+                // {
+                //     title: "Image",
+                //     type: "image",
+                //     icon: "a",
+                //     value: ""
+                // },
                 {
                     title: "Call To Action",
                     type: "cta",
@@ -262,6 +267,12 @@ export default {
                     type: "video",
                     icon: "a",
                     value: ""
+                },
+                {
+                    title: "Print Page Break",
+                    type: "pageBreak",
+                    icon: "a",
+                    value: ""
                 }
             ]
         }
@@ -286,10 +297,10 @@ export default {
             window.open(routeData.href, '_blank');
         },
         async saveWebbook() {
-            const pdf = await this.pdf()
+            // const pdf = await this.pdf()
             let obj = this.webbook
-            if(this.webbook.pdfJobId) this.webbook.pdfJobId = pdf
-            else this.$set(obj, 'pdfJobId', pdf)
+            // if(this.webbook.pdfJobId) this.webbook.pdfJobId = pdf
+            // else this.$set(obj, 'pdfJobId', pdf)
 
             await setDoc(doc(db, "webbooks", this.$route.params.id), obj);
             this.getWebbook()
@@ -313,6 +324,48 @@ export default {
         },
         removeAsset(index) {
             this.webbook.sections[this.sectionId].widgets.splice(index, 1)
+        },
+        testPDF() {
+            return new Promise((resolve, reject) => {
+            const payload = {
+    "Parameters": [
+        {
+            "Name": "File",
+            "FileValue": {
+                "Url": `https://cozy-queijadas-99b809.netlify.app/#/listing/${this.webbook.id}--1?pdf=true`
+            },
+        },
+        {
+            "Name": "StoreFile",
+            "Value": true
+        },
+        {
+            "Name": "BreakBeforeElements",
+            "Value": "html2pdf__page-break"
+        },
+        {
+            "Name": "WaitElement",
+            "Value": `div.html2pdf__page-break`
+        }
+    ]
+}
+
+
+            const headers = {
+                headers: {
+                    // 'X-API-Key': 'cl-c2d2048c5e3b4c299b4c72c629d0c40c'
+                    // 'Content-Type':'application/json',
+                    // 'Authorization': 'Bearer 550427341'
+                }
+            }
+
+            axios.post('https://v2.convertapi.com/convert/html/to/pdf?Secret=emqwnu8DxdwGfHLl', payload, headers).then((response) => {
+                console.log("respnse pdf", response.data)
+                resolve(response.data)
+            })
+
+            
+        })
         },
         pdf() {
             return new Promise((resolve, reject) => {
@@ -387,6 +440,7 @@ export default {
         assetMap,
         assetPdf,
         draggable,
+        assetPageBreak,
         Preloader
     }
 }

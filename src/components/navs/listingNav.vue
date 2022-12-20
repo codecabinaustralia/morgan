@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full shadow-lg bg-white">
+  <div class="w-full shadow-lg bg-white relative z-10 ">
     <div class="flex h-20 bg-white items-center mx-auto px-6 bg-black">
 
       <div class="flex-shrink mr-auto">
-        <img width="200" src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif"
+        <img @error="setAltImg" width="200" :src="require('@/assets/logo.png')"
           alt="Morgan Business Sales" />
       </div>
 
       <div class="flex-shrink mr-2 ml-auto">
-        <img
+        <img @error="setAltImg"
           :src="agent.avatar"
           alt="brocker" class="w-14 h-14 rounded object-cover">
       </div>
@@ -20,7 +20,7 @@
       </div>
       <div @click="showEnquire"
         class="ml-6 flex-shrink bg-yellow-500 text-white text-2xl header-bold px-4  hover:bg-yellow-400 cursor-pointer tracking-tight h-16 rounded flex items-center">
-        Enquire</div>
+        Any Questions?</div>
 
       <a :href="'tel:' + agent.phone "
         class="ml-6 flex-shrink bg-vgreen text-white text-2xl header-bold px-4  hover:bg-green-600 cursor-pointer tracking-tight h-16 rounded flex items-center">
@@ -70,6 +70,9 @@ export default {
     }
   },
   methods:{
+    setAltImg(event) { 
+    event.target.src = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+},
     showEnquire(){
       bus.$emit('toggleView', 'showContactForm');
     }

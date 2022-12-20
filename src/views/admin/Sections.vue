@@ -21,7 +21,7 @@
                 </div>
 
                 <div v-if="haveLink && !loadingLink" class="w-full my-4 bg-blue-100 rounded-lf px-4 py-2 text-sm text-blue-600">
-                    <h2 class="truncate">https://cozy-queijadas-99b809.netlify.app/#/{{haveLink}}</h2>
+                    <h2 class="truncate">https://cozy-queijadas-99b809.netlify.app/#/listing/{{haveLink}}</h2>
                 </div>
 
                 <div v-if="!loadingLink" class="w-full mt-4 text-center">
@@ -79,7 +79,7 @@
                             <tr v-for="(section, index) in item.sections" :key="index" v-if="!trash && section.status == 'Active'" class="h-12 cursor-move hover:bg-gray-200">
                                 <td width="5%"><svg class="w-4 mx-auto h-4 text-vgray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4"></path></svg></td>
                                 <td width="80%" class="pl-4 text-sm header-semiBold text-gray-500">
-                                    <router-link :to="{name: 'createWebBook'}" :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-vgreen">{{section.title}}</router-link>
+                                    <router-link :to="{name: 'createWebBook', params: {sectionId: index, id: webbookId}}" :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-vgreen">{{section.title}}</router-link>
                                 </td>
                                 
                                 <td>
@@ -134,8 +134,8 @@
                             <div class="w-1/4 text-sm text-gray-600">
                                 {{l.title}}
                             </div>
-                            <div class="w-2/4 text-blue-600 text-xs cursor-pointer hover:text-blue-800">
-                                <h2 class="truncate">https://cozy-queijadas-99b809.netlify.app/#/{{l.link}}</h2>
+                            <div class="w-2/4 text-blue-600 text-xs cursor-pointer hover:text-blue-800 truncate">
+                                <a target="_blank" :href="'https://cozy-queijadas-99b809.netlify.app/#/listing/' + l.link" ><span class="truncate">https://cozy-queijadas-99b809.netlify.app/#/listing/{{l.link}}</span></a>
                             </div>
                             <div class="w-1/4 flex justify-end space-x-2">
                                 <div class="flex-shrink">

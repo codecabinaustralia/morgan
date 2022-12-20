@@ -1,66 +1,80 @@
 <template>
   <div>
       <!-- Contact Form  -->
-      <div v-if="agent && showContactForm" class="w-full h-screen fixed bg-vgreen z-50">
-          <div class="w-full h-full flex items-center justify-center relative">
+       <div v-if="agent && showContactForm" class="w-full h-screen fixed bg-vgreen" style="z-index: 999999999999999999999999999999999999999">
+            <div class="w-full h-full flex items-center justify-center relative">
 
-              <div class="absolute top-0 right-0 m-4">
-                  <div @click="showContactForm = false"
-                      class="bg-black hover:bg-opacity-20 cursor-pointer bg-opacity-10 rounded text-white h-20 w-20 flex items-center justify-center">
-                      <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M6 18L18 6M6 6l12 12"></path>
-                      </svg>
-                  </div>
-              </div>
-              <div class="w-96 bg-white shadow-lg p-10 rounded-xl">
-                  <h2 class="header-bold text-2xl text-vgreen">Enquire Now</h2>
-                  <p class="text-vgray mt-2">Leave an enquiry with {{ agent.firstName }} {{ agent.lastName }}. You can
-                      expect a call back within 48 hrs.</p>
+                <div class="absolute top-0 right-0 m-4">
+                    <div @click="showContactForm = false"
+                        class="bg-black hover:bg-opacity-20 cursor-pointer bg-opacity-10 rounded text-white h-20 w-20 flex items-center justify-center">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="w-96 bg-white shadow-lg p-10 rounded-xl">
+                    <h2 class="header-bold text-2xl text-vgreen">Leave a question</h2>
+                    <p class="text-vgray mt-2">Leave a question with {{ agent.firstName }} {{ agent.lastName }}. You can
+                        expect a call back within 48 hrs.</p>
 
-                  <div class="w-full mt-4">
-                      <div class="w-full flex relative mb-4">
-                          <input v-model="enquire.name" type="text"
-                              class="input outline-none focus:text-vgreen focus:border-vgreen">
-                          <div
-                              class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
-                              Your name</div>
-                      </div>
+                    <div class="w-full mt-4">
+                        <div class="w-full flex relative mb-4">
+                            <input v-model="enquire.name" type="text"
+                                class="input outline-none focus:text-vgreen focus:border-vgreen">
+                            <div
+                                class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                                Your name</div>
+                        </div>
 
-                      <div class="w-full flex relative mb-4">
-                          <input v-model="enquire.email" type="text"
-                              class="input outline-none focus:text-vgreen focus:border-vgreen">
-                          <div
-                              class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
-                              Your email</div>
-                      </div>
+                        <div class="w-full flex relative mb-4">
+                            <input v-model="enquire.email" type="text"
+                                class="input outline-none focus:text-vgreen focus:border-vgreen">
+                            <div
+                                class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                                Your email</div>
+                        </div>
 
-                      <div class="w-full flex relative mb-4">
-                          <input v-model="enquire.phone" type="text"
-                              class="input outline-none focus:text-vgreen focus:border-vgreen">
-                          <div
-                              class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
-                              Your phone</div>
-                      </div>
+                        <div class="w-full flex relative mb-4">
+                            <input v-model="enquire.phone" type="text"
+                                class="input outline-none focus:text-vgreen focus:border-vgreen">
+                            <div
+                                class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                                Your phone</div>
+                        </div>
 
-                      <div class="w-full mt-4 text-center">
-                  <div @click="sendForm()"
-                      class="bg-vgreen rounded py-4 px-10 text-sm text-white header-medium cursor-pointer hover:bg-green-600">
-                      Enquire Now</div>
-              </div>
+                        <div class="w-full flex relative mb-4">
+                            <input v-model="enquire.question" type="text"
+                                class="input outline-none focus:text-vgreen focus:border-vgreen">
+                            <div
+                                class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-4 px-2">
+                                Your question</div>
+                        </div>
+
+                        <div class="w-full mt-4 text-center">
+                    <div @click="sendForm(agent.email), sendForm('josh+test@jblventures.com.au')"
+                        class="bg-vgreen rounded py-4 px-10 text-sm text-white header-medium cursor-pointer hover:bg-green-600">
+                        Submit</div>
+                </div>
 
 
-                  </div>
-              </div>
+                    </div>
+                </div>
 
 
-          </div>
-      </div>
+            </div>
+        </div>
 
       <!-- Nav  -->
       <div v-if="!isPdf && !loading && passedValidation" class="w-full fixed" style="z-index: 999999999999999999999999999999999999">
           <listing-nav :agent="agent" v-if="agent" />
+      </div>
+
+      <div class="fixed top-0 right-0 mt-20 mr-6">
+        <div @click="generateReport()" class="bg-white rounded shadow-lg p-4 rounded-lg">
+            Print PDF
+        </div>
       </div>
 
       <!-- Password Modal  -->
@@ -142,10 +156,11 @@
               
           <div class="w-full bg-white flex">
                   <div class="container mx-auto justify-center">
-                      <div class="w-full flex flex-wrap " v-for="(section, sIndex) in item.sections"
+                      <div class=" w-full flex flex-wrap " v-for="(section, sIndex) in item.sections"
                           :key="sIndex + 's'">
                           <div class="w-full" :id="toSlug(section.title)">
-                              <div class="html2pdf__page-break w-full flex flex-wrap" v-for="(w, wIndex) in section.widgets"
+                            
+                              <div class="contentPage html2pdf__page-break w-full flex flex-wrap print:my-20" :class="w.type == 'pageBreak' ? 'print-pdf-break' : ''"  v-for="(w, wIndex) in section.widgets"
                                   :key="wIndex + 'w'">
                                   <widget-hero :asset="w" v-if="w.type == 'hero'" class="w-full" />
                                   <widget-executive-summary :asset="w" v-if="w.type == 'executiveSummary'"
@@ -179,7 +194,7 @@
                   <div class="container mx-auto px-10 flex h-full items-center flex">
                       <div class="flex-shrink mr-auto">
                           <img width="200"
-                              src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif"
+                              :src="require('@/assets/logo.png')"
                               alt="Morgan Business Sales" />
                       </div>
                       <div class="flex-shrink flex">
@@ -232,7 +247,8 @@ export default {
           enquire: {
               name: '',
               email: '',
-              phone: ''
+              phone: '',
+              question: ''
           },
           showContactForm: false,
           error: "",
@@ -253,27 +269,54 @@ export default {
     }
   },
   methods: {
-      sendForm(){
-          const sgMail = require('@sendgrid/mail');
-          sgMail.setApiKey('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');
-          const msg = {
-          to: 'josh@jblventures.com.au',
-          from: this.enquire.email, // Use the email address or domain you verified above
-          subject: `Enquiry from ${this.webbook.title}`,
-          text: `You have an equiry from ${this.enquire.name} reguarding ${this.webbook.title}. You can phone them back on: ${this.enquire.phone} or by email: ${this.enquire.email}`,
-          html: `You have an equiry from ${this.enquire.name} reguarding <strong>${this.webbook.title}</strong>. You can phone them back on: <strong>${this.enquire.phone}</strong> or by email: <strong>${this.enquire.email}</strong>`,
-          };
-          //ES6
-          sgMail
-          .send(msg)
-          .then(() => {}, error => {
-              console.error(error);
+      sendForm(email){
 
-              if (error.response) {
-              console.error(error.response.body)
-              }
-          });
-      },
+
+            let html = `
+            <div style="width: 100%; padding: 40px; background-color: #efefef;">
+            <div style="width: 600px; margin: auto; background-color: #fff; padding: 50px; border-radius: 40px;">
+            <div><img :src="require('@/assets/logo.png')" width="200px" style="margin-bottom: 20px"/></div>
+                <div><h1 class="font-size: 26px;">Feedback from form: <strong>${this.webbook.title}</strong></h1></div>
+            <table class="margin: 50px 0;">
+            <tbody>
+            <tr> 
+            <td width="200" style="font-weight: bold">Name</td>
+            <td width="200">${this.enquire.name}</td>
+            </tr>
+
+            <tr> 
+            <td width="200" style="font-weight: bold">Email</td>
+            <td width="200">${this.enquire.email}</td>
+            </tr>
+
+            <tr> 
+            <td width="200" style="font-weight: bold">Phone</td>
+            <td width="200">${this.enquire.phone}</td>
+            </tr>
+
+            <tr> 
+            <td width="200" style="font-weight: bold">Question</td>
+            <td width="200">${this.enquire.question}</td>
+            </tr>
+            </tbody>   
+            </table>
+            </div>
+            `
+
+
+            const payload = {
+                to: email,
+                from: 'josh@jblventures.com.au',
+                subject: `You have a question for ${this.webbook.title}`,
+                text: `This is a quesiton from ${this.enquire.name}. ${this.enquire.question} - from listing: ${this.webbook.title} - email: ${this.enquire.email} - phone: ${this.enquire.phone}`,
+                html: html
+            }
+
+            axios.post('https://us-central1-morgan-569c6.cloudfunctions.net/widgets/email/send-mail', payload).then((response) => {
+                console.log('Response from email', response.data)
+                this.showContactForm = false
+            })
+        },
       async login() {
           console.log("webbook", this.webhook)
           if (this.item.password == this.password) {
@@ -343,7 +386,7 @@ export default {
           }
       },
       generateReport() {
-          this.$refs.html2Pdf.generatePdf()
+          window.print();
       }
   },
   created() {
@@ -376,3 +419,7 @@ export default {
   },
 };
 </script>
+
+<style>
+.contentPage { page-break-inside: avoid; }
+</style>

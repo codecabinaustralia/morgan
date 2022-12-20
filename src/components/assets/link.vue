@@ -39,9 +39,9 @@
                 </div>
             </div>
             <div class="flex-shrink">
-                <div class=" relative mb-4 text-center">
+                <!-- <div class=" relative mb-4 text-center">
                     <qr-code :text="v.link" :size="100"></qr-code>
-                </div>
+                </div> -->
                 <div v-if="index == value.length - 1" @click="addLink()" class="w-full bg-vgreen h-12 text-white rounded flex items-center justify-center cursor-pointer">Add
                     Link</div>
 

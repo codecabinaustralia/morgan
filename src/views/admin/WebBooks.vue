@@ -34,7 +34,7 @@
                             </tr>
                             <tr v-if="items.length > 0" class="h-12" v-for="(i, index) in items" :key="index">
                                 <td class="pl-4 text-sm header-semiBold text-gray-500">
-                                    <router-link :to="{ name: 'Sections', params:{id: i.id} }" :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-vgreen header">
+                                    <router-link :to="{name: 'Sections', params:{id: i.id}}" :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-vgreen header">
                                         {{ i.title }}
                                     </router-link>
                                 </td>

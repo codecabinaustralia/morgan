@@ -6,7 +6,7 @@
                                         
                                     </div>
 
-                                    <div class="w-1/2 p-4" :class="asset.value.position =='Image left - Text right' ? 'order-1' : 'order-2'">
+                                    <div class="w-1/2 p-4 flex justify-start align-top" :class="asset.value.position =='Image left - Text right' ? 'order-1' : 'order-2'">
                                         <img :src="asset.value.image"
                                             class="rounded-lg w-full shadow-lg" alt="">
                                     </div>

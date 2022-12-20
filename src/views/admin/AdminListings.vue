@@ -31,7 +31,7 @@
         <div class="flex-grow bg-gray-100 h-screen">
             <div class="w-full bg-white h-20 flex">
                 <div class="flex-shrink">
-                    <img src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif" alt="Morgan Logo" class="h-20 object-cover">
+                    <img :src="require('@/assets/logo.png')" alt="Morgan Logo" class="h-20 object-cover">
                 </div>
                 <div class="flex-shrink ml-auto h-full flex items-center mr-4">
                     <router-link class="text-vgray text-sm hover:text-vgreen" to="/">View Site</router-link>

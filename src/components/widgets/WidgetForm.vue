@@ -79,7 +79,7 @@ export default {
             let html = `
             <div style="width: 100%; padding: 40px; background-color: #efefef;">
             <div style="width: 600px; margin: auto; background-color: #fff; padding: 50px; border-radius: 40px;">
-            <div><img src="https://static.wixstatic.com/media/63b119_0a5614dcd14f4896905e2d79bdc09c20~mv2.gif" width="200px" style="margin-bottom: 20px"/></div>
+            <div><img :src="require('@/assets/logo.png')" width="200px" style="margin-bottom: 20px"/></div>
                 <div><h1 class="font-size: 26px;">Feedback from form: <strong>${this.asset.value.form.title}</strong></h1></div>
             <table class="margin: 50px 0;">
             ${htmlFields}    

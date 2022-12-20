@@ -54,11 +54,7 @@ export default {
             }
         }
     },
-    created(){
-        let Script = document.createElement("script");
-    Script.setAttribute("src", "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCk2mQZ7g7MHwSE3b3bJXJeOpG71UHElek");
-    document.head.appendChild(Script);
-    },
+
     mounted() {
         
 

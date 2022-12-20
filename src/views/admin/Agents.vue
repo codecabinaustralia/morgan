@@ -39,7 +39,7 @@
                             </tr>
                             <tr v-if="items.length > 0" class="h-12" v-for="(i, index) in items" :key="index">
                                 <td>
-                                    <img  v-if="i.avatar" class="ml-2 h-12 w-12 rounded object-cover"
+                                    <img @error="setAltImg" v-if="i.avatar" class="ml-2 h-12 w-12 rounded object-cover"
                                         :src="i.avatar"
                                         alt="broker avatar">
                                 </td>
@@ -115,6 +115,9 @@ export default {
         }
     },
     methods: {
+        setAltImg(event) { 
+    event.target.src = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541'
+},
         formatTime(time) {
             return this.$moment(time.seconds * 1000).format("DD-MM-YYYY")
         },
