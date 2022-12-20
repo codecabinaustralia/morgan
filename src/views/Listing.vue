@@ -1,7 +1,7 @@
 <template>
   <div>
       <!-- Contact Form  -->
-       <div v-if="agent && showContactForm" class="w-full h-screen fixed bg-vgreen" style="z-index: 999999999999999999999999999999999999999">
+       <div v-if="agent && showContactForm" class="print:hidden w-full h-screen fixed bg-vgreen" style="z-index: 999999999999999999999999999999999999999">
             <div class="w-full h-full flex items-center justify-center relative">
 
                 <div class="absolute top-0 right-0 m-4">
@@ -67,14 +67,18 @@
         </div>
 
       <!-- Nav  -->
-      <div v-if="!isPdf && !loading && passedValidation" class="w-full fixed" style="z-index: 999999999999999999999999999999999999">
+      <div v-if="!isPdf && !loading && passedValidation" class="print:hidden w-full fixed" style="z-index: 999999999999999999999999999999999999">
           <listing-nav :agent="agent" v-if="agent" />
       </div>
 
-      <div class="fixed top-0 right-0 mt-20 mr-6">
-        <div @click="generateReport()" class="bg-white rounded shadow-lg p-4 rounded-lg">
-            Print PDF
-        </div>
+      <div class="print:hidden fixed top-0 right-0 mt-28 mr-6">
+        <div
+        @click="generateReport()"
+        class="bg-white rounded shadow-lg p-2 rounded-lg cursor-pointer hover:bg-gray-100 text-gray-600 text-sm"
+      >
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s" class="w-10 h-10 object-cover inline-block" />
+        Print PDF
+      </div>
       </div>
 
       <!-- Password Modal  -->
@@ -119,7 +123,7 @@
 
 
       <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
-          <div v-if="!isPdf" class="flex-shrink">
+          <div class="flex-shrink print:hidden">
               <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
                   <div class="w-full" v-for="(section, index) in item.sections" :key="index">
                       <span @click="scrollMeTo(section.title)" v-if="section.status == 'Active'"
@@ -129,7 +133,7 @@
               </div>
           </div>
 
-          <div v-if="!isPdf" @click="showTranslation = !showTranslation" style="z-index: 9999999999999999999999" class="fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4">
+          <div  @click="showTranslation = !showTranslation" style="z-index: 9999999999999999999999" class="print:hidden fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4">
         <div class="w-full hover:bg-gray-100 cursor-pointer bg-white p-3 flex space-x-2 rounded-lg shadow-lg">
           <div class="flex-shrink">
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
@@ -142,7 +146,7 @@
         </div>
       </div>
 
-      <div v-if="!isPdf" :class="!showTranslation ? 'hidden' : ''" style="z-index: 9999999999999999999999;" class="fixed bg-gray-900 bg-opacity-90 top-0 left-0 z-50 h-screen w-full">
+      <div :class="!showTranslation ? 'hidden' : ''" style="z-index: 9999999999999999999999;" class="print:hidden fixed bg-gray-900 bg-opacity-90 top-0 left-0 z-50 h-screen w-full">
         <div class="w-full h-full flex items-center justify-center">
           <div class="w-1/2" @click="(showTranslation = false)">
               <Translator class="bg-white rounded shadow-lg h-96 overflow-y-scroll" />
@@ -152,7 +156,7 @@
 
 
 
-          <div :class="isPdf ? '' : 'pl-56'" class="flex-grow">
+          <div class="print:pl-0 pl-56 flex-grow">
               
           <div class="w-full bg-white flex">
                   <div class="container mx-auto justify-center">
@@ -352,6 +356,7 @@ export default {
           this.$scrollTo(x, 500, { easing: 'ease-in-out', offset: -160 })
       },
       async getData() {
+        console.log("getting data", this.$route.params.id.split('--')[0])
           this.loading = true
           const docRef = doc(db, "webbooks", this.$route.params.id.split('--')[0]);
           const docSnap = await getDoc(docRef);
