@@ -278,9 +278,9 @@
 
     <div
       v-if="!loading && passedValidation & (webbook.status == 'Active')"
-      class="w-full flex flex-wrap pt-20"
+      class="w-full flex flex-wrap sm:pt-20"
     >
-      <div class="flex-shrink print:hidden">
+      <div class="flex-shrink print:hidden hidden sm:block">
         <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg pt-0 text-sm">
           <div
             class="w-full px-6"
@@ -302,6 +302,7 @@
         </div>
       </div>
 
+      <!-- language  -->
       <div
         @click="showTranslation = !showTranslation"
         style="z-index: 9999999999999999999999"
@@ -334,6 +335,7 @@
         </div>
       </div>
 
+      <!-- language modal  -->
       <div
         :class="!showTranslation ? 'hidden' : ''"
         style="z-index: 9999999999999999999999"
@@ -357,7 +359,7 @@
         </div>
       </div>
 
-      <div class="flex-grow print:pl-0 pl-56">
+      <div class="flex-grow print:pl-0 pl-0 sm:pl-56">
         <div class="w-full bg-white flex">
           <section class="container mx-auto justify-center" slot="pdf-content">
             <div

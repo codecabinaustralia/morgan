@@ -2,7 +2,7 @@
      <section class="">
                                 <div class="mx-auto max-w-7xl ">
                                     <h2 class="text-2xl header-bold my-2 print:block sm:hidden">Links</h2>
-                                    <div class="flex flex-wrap space-x-2 items-center">
+                                    <div class="flex flex-wrap sm:space-x-2 items-center">
                                         
                                         <div v-for="(v, index) in asset.value" :key="index" class="mb-2">
 
@@ -14,7 +14,7 @@
                                                 </div>
                                                 <div class="flex-shrink">
                                                      <a :href="v.link" target="_blank"
-                                                    class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-vgreen shadow-sm hover:bg-indigo-50">Open Link
+                                                    class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-vgreen shadow-sm hover:bg-indigo-50">Open <span class="hidden sm:inline-block">Link</span>
                                                     </a>
                                                 </div>
                                             </div>

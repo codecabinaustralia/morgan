@@ -1,9 +1,9 @@
 <template>
     <div class="py-10 mb-20 flex w-full bg-white shadow-lg">
       <div
-        class="container mx-auto h-full flex flex-wrap justify-center items-center px-20"
+        class="container mx-auto h-full flex flex-wrap justify-center items-center sm:px-20"
       >
-        <div class="w-2/3 text-center">
+        <div class="w-full sm:w-2/3 text-center">
   
           <div class="h-64 w-64 bg-transparent mx-auto rounded-lg flex items-center justify-center">
                 <img :src="asset.value.image" class="mx-auto w-64 rounded-lg">
@@ -20,8 +20,8 @@
           </div>
         </div>
   
-        <div class="w-full flex justify-center space-x-4 my-10">
-          <div class="flex-shrink">
+        <div class="w-full flex flex-wrap justify-center space-y-2 sm:space-y-0 p-6 sm:p-0 my-10">
+          <div class="w-full sm:w-1/3 flex justify-center">
               <div class="w-64 min-h-36 text-center bg-vgreen rounded-lg p-4 flex flex-wrap items-center">
                   <div class="w-full text-center">
                       <h2 class="text-2xl text-white print:text-black  header-bold">{{asset.value.stat1Value}}</h2>
@@ -31,7 +31,7 @@
                   </div>
               </div>
           </div>
-          <div class="flex-shrink">
+          <div class="w-full sm:w-1/3 flex justify-center">
               <div class="w-64 min-h-36 text-center bg-vgreen rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
                       <h2 class="text-2xl text-white print:text-black  header-bold">{{asset.value.stat2Value}}</h2>
@@ -41,7 +41,7 @@
                   </div>
               </div>
           </div>
-          <div class="flex-shrink">
+          <div class="w-full sm:w-1/3 flex justify-center">
               <div class="w-64 min-h-36 text-center bg-vgreen rounded-lg p-4 flex flex-wrap items-center">
                 <div class="w-full text-center">
                       <h2 class="text-2xl text-white print:text-black header-bold">{{asset.value.stat3Value}}</h2>
