@@ -1,13 +1,13 @@
 <template>
     <div class="w-full">
-        <section v-if="agent" class="w-full flex my-20 bg-gray-100 ">
-        <div class="flex-shrink">
+        <section v-if="agent" class="w-full flex my-10 bg-gray-100 ">
+        <div class="w-2/12">
             <img @error="setAltImg" class="h-40 w-40 rounded-lg shadow-lg object-cover m-4  "
                 :src="agent.avatar"
                 alt="agent">
         </div>
 
-        <div class="flex-grow px-6 py-3">
+        <div class="w-10/12 px-6 py-3">
             <h3 class="text-sm text-vgreen header-bold">Broker</h3>
             <h2 class="text-vgraySuperDark header-bold tracking-tight text-3xl">{{agent.firstName}} {{agent.lastName}}</h2>
 
@@ -29,7 +29,7 @@
                 <div class="flex-grow text-vgreen cursor-pointer hover:text-green-600">
                     {{agent.email}}</div>
             </div>
-            <div class="w-full flex">
+            <div v-if="asset.value.link" class="w-full flex">
                 <div class="flex-shrink">
                     <div class="w-40 header-bold tracking-tight text-vgraySuperDark text-sm">
                         Link</div>

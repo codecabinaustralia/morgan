@@ -12,6 +12,34 @@
 
             <h2 class="text-vgray text-lg">Add {{ asset.title }}</h2>
         </div>
+
+        <div class="w-full relative mb-2 mt-4 px-6">
+                <select v-model="value.zoom" class="input outline-none focus:text-vgreen focus:border-vgreen">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                </select>
+                <div class="bg-white rounded header-medium text-vgreen absolute text-xs top-0 left-0 -mt-2 ml-2 px-2">
+                    Zoom Level - 1 equal to globe view</div>
+            </div>
+
         <div class="w-full flex  mb-2 p-6">
             <div class="w-full relative">
                 <input ref="autocomplete" v-model="address" type="text" placeholder="Enter address"
@@ -50,6 +78,7 @@ export default {
         return {
             address: '',
             value: {
+                zoom: 1,
                 items: []
             }
         }

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full shadow-lg bg-white relative z-10 ">
-    <div class="flex h-20 bg-white items-center mx-auto px-6 bg-black">
+    <div class="flex h-36 bg-white items-center mx-auto px-2 bg-black">
 
       <div class="flex-shrink mr-auto">
         <img @error="setAltImg" width="200" :src="require('@/assets/logo.png')"
@@ -19,11 +19,11 @@
         </div>
       </div>
       <div @click="showEnquire"
-        class="ml-6 flex-shrink bg-yellow-500 text-white text-2xl header-bold px-4  hover:bg-yellow-400 cursor-pointer tracking-tight h-16 rounded flex items-center">
+        class="ml-6 flex-shrink bg-vgreen text-white text-xl header-bold px-4  hover:bg-vgreen cursor-pointer tracking-tight h-14 rounded flex items-center">
         Any Questions?</div>
 
       <a :href="'tel:' + agent.phone "
-        class="ml-6 flex-shrink bg-vgreen text-white text-2xl header-bold px-4  hover:bg-green-600 cursor-pointer tracking-tight h-16 rounded flex items-center">
+        class="ml-6 flex-shrink bg-vgreen text-white text-xl header-bold px-4  hover:bg-green-600 cursor-pointer tracking-tight h-14 rounded flex items-center">
         <span class="header-semiBold text-lg mr-1"><svg class="w-6 h-6" fill="none" stroke="currentColor"
             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

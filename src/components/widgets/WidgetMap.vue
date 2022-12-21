@@ -7,7 +7,7 @@
             </iframe> -->
             <GmapMap ref="map"
   :center="markers[0].position"
-  :zoom="2"
+  :zoom="parseInt(asset.value.zoom)"
   map-type-id="terrain"
   style="width: 100%; height: 500px; z-index: 0; position: relative"
 >
@@ -42,7 +42,7 @@ export default {
             let arr = []
             this.asset.value.items.forEach(a => {
                 arr.push(
-                    {position: {lat: a.lat, lng: a.long}}
+                    {position: {lat: a.lat, lng: a.long}, zoom: a.zoom}
                 )
             })
             

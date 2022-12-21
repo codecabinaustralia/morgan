@@ -2,21 +2,21 @@
     <section class="my-20">
                                 <div class="w-full flex justify-center" v-if="(fields.length > 0)">
 
-                                    <div class="w-3/4">
+                                    <div class="w-1/2">
                                         <div v-if="!thankyou"
-                                            class="bg-white shadow-lg w-full rounded-lg p-10 flex flex-wrap items-center justify-start">
-                                            <div class="w-full px-2"><h3 class="text-vgreen header text-2xl mb-2">{{asset.value.form.title}}</h3></div>
+                                            class="bg-vgreen w-full rounded-lg p-10 flex flex-wrap items-center justify-center">
+                                            <h3 class="text-white header text-2xl mb-2">{{asset.value.form.title}}</h3>
 
-                                            <div class="w-1/2 mb-1 px-2" v-for="(f, index) in fields" :key="index">
-                                                <label class="text-vgreen text-sm">{{f.label}}</label>
-                                                <input v-if="f.type =='singleText'" v-model="f.value" :required="f.required" type="text" class=" h-16 input" :placeholder="f.placeholder">
+                                            <div class="w-full mb-1" v-for="(f, index) in fields" :key="index">
+                                                <label class="text-white text-sm">{{f.label}}</label>
+                                                <input v-if="f.type =='singleText'" v-model="f.value" :required="f.required" type="text" class="input" :placeholder="f.placeholder">
                                                 <textarea v-if="f.type =='textArea'" v-model="f.value" :required="f.required" type="text" class="input py-2" :placeholder="f.placeholder" />
                                             </div>
                                             
 
                                             <div class="w-full">
                                                 <div @click="sendEmail()"
-                                                    class="bg-vgreen cursor-pointer hover:bg-opacity-90 rounded h-16 mt-6 flex items-center justify-center text-white">
+                                                    class="bg-yellow-500 cursor-pointer hover:bg-opacity-90 rounded h-12 flex items-center justify-center text-white">
                                                     Submit
                                                 </div>
                                             </div>
@@ -28,7 +28,7 @@
                                             
                                             <div class="w-full mt-6">
                                                 <div @click="goBack()"
-                                                    class="bg-vgreen cursor-pointer hover:bg-opacity-90 rounded h-12 flex items-center justify-center text-white">
+                                                    class="bg-yellow-500 cursor-pointer hover:bg-opacity-90 rounded h-12 flex items-center justify-center text-white">
                                                     Send another
                                                 </div>
                                             </div>

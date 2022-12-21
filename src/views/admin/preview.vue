@@ -7,25 +7,11 @@
       style="z-index: 999999999999999999999999999999999999999"
     >
       <div class="w-full h-full flex items-center justify-center relative">
-        <div class="absolute top-0 right-0 m-4">
-          <div
-            @click="showContactForm = false"
-            class="
-              bg-black
-              hover:bg-opacity-20
-              cursor-pointer
-              bg-opacity-10
-              rounded
-              text-white
-              h-20
-              w-20
-              flex
-              items-center
-              justify-center
-            "
-          >
+
+        <div class="w-96 bg-white shadow-lg p-10 rounded-xl relative">
+          <div class="absolute top-0 right-0 m-2" @click="showContactForm = false">
             <svg
-              class="w-16 h-16"
+              class="w-10 text-gray-500 h-10"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -39,8 +25,6 @@
               ></path>
             </svg>
           </div>
-        </div>
-        <div class="w-96 bg-white shadow-lg p-10 rounded-xl">
           <h2 class="header-bold text-2xl text-vgreen">Leave a question</h2>
           <p class="text-vgray mt-2">
             Leave a question with {{ agent.firstName }} {{ agent.lastName }}.
@@ -182,10 +166,10 @@
       <listing-nav :agent="agent" v-if="agent" />
     </div>
 
-    <div class="print:hidden fixed top-0 right-0 mt-28 mr-6" style="z-index: 9999999999999999999999999999">
+    <div class="print:hidden fixed bottom-0 left-0 mb-24 ml-4 w-52 mr-6" style="z-index: 9999999999999999999999999999">
       <div
         @click="generateReport()"
-        class="bg-white rounded shadow-lg p-2 rounded-lg cursor-pointer hover:bg-gray-100 text-gray-600 text-sm"
+        class="bg-white rounded shadow-lg p-3 rounded-lg cursor-pointer hover:bg-gray-100 text-gray-600 text-sm"
       >
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s" class="w-10 h-10 object-cover inline-block" />
         Print PDF
@@ -297,9 +281,9 @@
       class="w-full flex flex-wrap pt-20"
     >
       <div class="flex-shrink print:hidden">
-        <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
+        <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg pt-0 text-sm">
           <div
-            class="w-full"
+            class="w-full px-6"
             v-for="(section, index) in item.sections"
             :key="index"
           >
@@ -325,11 +309,11 @@
       >
         <div
           class="
-            w-full
+            w-52 -mb-2
             hover:bg-gray-100
             cursor-pointer
             bg-white
-            p-3
+            p-3 h-16
             flex
             space-x-2
             rounded-lg
@@ -479,9 +463,9 @@
           </section>
         </div>
 
-        <section class="w-full flex pdfFooter print:mb-10">
+        <section class="w-full flex pdfFooter print:mb-10 py-6">
           <div class="container mx-auto px-10 flex h-full items-center flex">
-            <div class="flex-shrink mr-auto">
+            <div class="flex-shrink mr-auto ml-4">
               <img
                 width="140"
                 :src="require('@/assets/logo.png')"

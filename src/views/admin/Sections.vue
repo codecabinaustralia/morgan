@@ -297,6 +297,7 @@ import Preloader from "@/components/loader"
             this.loading = false
         },
             async saveItem(){
+                console.log("this/ item", this.item)
                 await setDoc(doc(db, "webbooks", this.$route.params.id), this.item);
             },
             async getWebbook(){
