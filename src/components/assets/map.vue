@@ -78,7 +78,7 @@ export default {
         return {
             address: '',
             value: {
-                zoom: 1,
+                zoom: 13,
                 items: []
             }
         }

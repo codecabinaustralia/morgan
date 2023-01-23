@@ -28,7 +28,6 @@
         <div class="w-full my-2 px-6 relative ">
             <select v-model="value.display" class="input outline-none focus:text-vgreen focus:border-vgreen">
                 <option>Inline</option>
-                <option>List</option>
             </select>
             
                     <div

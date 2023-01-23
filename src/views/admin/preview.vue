@@ -136,7 +136,7 @@
               <div
                 @click="
                   sendForm(agent.email),
-                    sendForm('josh+test@jblventures.com.au')
+                  sendForm('jade@morganbusinesssales.com')
                 "
                 class="
                   bg-vgreen
@@ -280,8 +280,30 @@
       v-if="!loading && passedValidation & (webbook.status == 'Active')"
       class="w-full flex flex-wrap sm:pt-20"
     >
-      <div class="flex-shrink print:hidden hidden sm:block">
-        <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg pt-0 text-sm">
+      <div  class="sm:flex-shrink print:hidden hidden sm:block">
+        <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg text-sm">
+          <div
+            class="w-full px-6"
+            v-for="(section, index) in item.sections"
+            :key="index"
+          >
+            <span
+              @click="scrollMeTo(section.title)"
+              v-if="section.status == 'Active'"
+              :class="
+                section.title == currentSection
+                  ? 'bg-vgreen text-white'
+                  : 'hover:bg-gray-200 cursor-pointer'
+              "
+              class="px-4 h-12 flex items-center cursor-pointer"
+              >{{ section.title }}</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div :class="showNav ? 'fixed top-0 left-0 h-full' : 'hidden'" style="z-index: 9999999999999999999999" class="print:hidden sm:hidden">
+        <div class="h-screen fixed w-10/12 bg-gray-100 text-sm px-4 py-10">
           <div
             class="w-full px-6"
             v-for="(section, index) in item.sections"
@@ -359,7 +381,7 @@
         </div>
       </div>
 
-      <div class="flex-grow print:pl-0 pl-0 sm:pl-56">
+      <div class="flex-grow print:pl-0 pl-0 sm:pl-56 pt-40 sm:pt-0">
         <div class="w-full bg-white flex">
           <section class="container mx-auto justify-center" slot="pdf-content">
             <div
@@ -381,82 +403,83 @@
                   <widget-executive-summary
                     :asset="w"
                     v-if="w.type == 'executiveSummary'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-header
                     :asset="w"
                     v-if="w.type == 'header'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-agents
                     :asset="w"
                     v-if="w.type == 'agents'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-text-area
                     :asset="w"
                     v-if="w.type == 'textArea'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-iframe
                     :asset="w"
                     v-if="w.type == 'iFrame'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-form
                     :asset="w"
+                    :agent="agent"
                     v-if="w.type == 'form'"
-                    class="w-full px-20"
+                    class="w-full px-0 sm:px-20"
                   />
                   <widget-image
                     :asset="w"
                     v-if="w.type == 'image'"
-                    class="w-full px-20"
+                    class="w-full sm:px-20"
                   />
                   <widget-image-text
                     :asset="w"
                     v-if="w.type == 'imageText'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-image-gallery
                     :asset="w"
                     v-if="w.type == 'imageGallery'"
-                    class="w-full px-20"
+                    class="w-full sm:px-20"
                   />
                   <widget-image-gallery-list
                     :asset="w"
                     v-if="w.type == 'imageGalleryList'"
-                    class="w-full px-20"
+                    class="w-full sm:px-20"
                   />
                   <widget-cta
                     :asset="w"
                     v-if="w.type == 'cta'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-pdf
                     :asset="w"
                     v-if="w.type == 'pdf'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-contact-form
                     :asset="w"
                     v-if="w.type == 'contactForm'"
-                    class="w-full px-20 print:hidden"
+                    class="w-full px-10 sm:px-20 print:hidden"
                   />
                   <widget-link
                     :asset="w"
                     v-if="w.type == 'link'"
-                    class="w-full px-20 "
+                    class="w-full px-10 sm:px-20 "
                   />
                   <widget-video
                     :asset="w"
                     v-if="w.type == 'video'"
-                    class="w-full px-20"
+                    class="w-full px-0 sm:px-20"
                   />
                   <widget-map
                     :asset="w"
                     v-if="w.type == 'map'"
-                    class="w-full px-20"
+                    class="w-full px-10 sm:px-20"
                   />
 
                 </div>
@@ -523,6 +546,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      showNav: false,
       showTranslation: false,
       agent: null,
       enquire: {

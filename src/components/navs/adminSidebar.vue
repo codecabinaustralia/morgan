@@ -13,10 +13,10 @@
                     
                 </div>
 
-                <div class="w-full pt-4 mt-4 border-t border-gray-600">
+                <!-- <div class="w-full pt-4 mt-4 border-t border-gray-600">
                     <h3 :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-green-400 header-semiBold text-xs mb-2">CRM</h3>
                     <h2 class="text-white mb-4 cursor-pointer header-medium text-sm flex w-full"><span class="mr-auto">Coming Soon</span> <svg class="w-3 h-3 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></h2>
-                </div>
+                </div> -->
 
                 <div class="w-full pt-4 border-t border-gray-600">
                     <h3 :style="currentTenant.primaryColor ? `color:${currentTenant.primaryColor}`: ''" class="text-green-400 header-semiBold text-xs mb-2">My Settings</h3>

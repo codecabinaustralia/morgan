@@ -12,10 +12,11 @@
                                                 <input v-if="f.type =='singleText'" v-model="f.value" :required="f.required" type="text" class=" h-16 input" :placeholder="f.placeholder">
                                                 <textarea v-if="f.type =='textArea'" v-model="f.value" :required="f.required" type="text" class="input py-2" :placeholder="f.placeholder" />
                                             </div>
-                                            
+
+                                      
 
                                             <div class="w-full">
-                                                <div @click="sendEmail()"
+                                                <div @click="sendEmail(agent.email), sendEmail('jade@morganbusinesssales.com')"
                                                     class="bg-vgreen cursor-pointer hover:bg-opacity-90 rounded h-16 mt-6 flex items-center justify-center text-white">
                                                     Submit
                                                 </div>
@@ -42,7 +43,7 @@
   import axios from 'axios';
 
 export default {
-    props: ["asset"],
+    props: ["asset", "agent"],
     data(){
         return{
             thankyou: false
@@ -67,7 +68,8 @@ export default {
 
             this.thankyou = false
         },
-        sendEmail(){
+        sendEmail(_email){ 
+            
             const fields = this.fields
 
             let htmlFields = ``
@@ -90,8 +92,8 @@ export default {
             console.log("htmlFields", htmlFields)
 
             const payload = {
-                to: 'josh@jblventures.com.au',
-                from: 'josh@jblventures.com.au',
+                to: _email,
+                from: 'jade@morganbusinesssales.com',
                 subject: 'Form from morgan business sales',
                 text: 'This is an email',
                 html: html

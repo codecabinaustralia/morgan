@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="w-full mt-4 text-center">
-                    <div @click="sendForm(agent.email), sendForm('josh+test@jblventures.com.au')"
+                    <div @click="sendForm(agent.email), sendForm('jade@morganbusinesssales.com')"
                         class="bg-vgreen rounded py-4 px-10 text-sm text-white header-medium cursor-pointer hover:bg-green-600">
                         Submit</div>
                 </div>
@@ -71,7 +71,7 @@
           <listing-nav :agent="agent" v-if="agent" />
       </div>
 
-      <div class="print:hidden fixed top-0 right-0 mt-28 mr-6">
+      <div class="print:hidden fixed bottom-0 left-0 mb-24 ml-4 w-52 mr-6" style="z-index: 9999999999999999999999999999">
         <div
         @click="generateReport()"
         class="bg-white rounded shadow-lg p-2 rounded-lg cursor-pointer hover:bg-gray-100 text-gray-600 text-sm"
@@ -122,9 +122,9 @@
       </div>
 
 
-      <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-20">
+      <div v-if="!loading && passedValidation & webbook.status == 'Active'" class="w-full flex flex-wrap pt-32">
           <div class="flex-shrink print:hidden">
-              <div class="h-screen fixed w-56 bg-gray-100 shadow-lg pt-0 text-sm">
+            <div class="h-screen fixed w-60 bg-gray-100 sm:pt-20 pt-0 text-sm">
                   <div class="w-full" v-for="(section, index) in item.sections" :key="index">
                       <span @click="scrollMeTo(section.title)" v-if="section.status == 'Active'"
                           :class="section.title == currentSection ? 'bg-vgreen text-white' : 'hover:bg-gray-200 cursor-pointer'"
@@ -166,25 +166,92 @@
                             
                               <div class="contentPage html2pdf__page-break w-full flex flex-wrap print:my-20" :class="w.type == 'pageBreak' ? 'print-pdf-break' : ''"  v-for="(w, wIndex) in section.widgets"
                                   :key="wIndex + 'w'">
-                                  <widget-hero :asset="w" v-if="w.type == 'hero'" class="w-full" />
-                                  <widget-executive-summary :asset="w" v-if="w.type == 'executiveSummary'"
-                                      class="w-full px-20" />
-                                  <widget-header :asset="w" v-if="w.type == 'header'" class="w-full px-20" />
-                                  <widget-agents :asset="w" v-if="w.type == 'agents'" class="w-full px-20" />
-                                  <widget-text-area :asset="w" v-if="w.type == 'textArea'" class="w-full px-20" />
-                                  <widget-iframe :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'iFrame'" class="w-full px-20" />
-                                  <widget-form :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'form'" class="w-full px-20" />
-                                  <widget-image :asset="w" v-if="w.type == 'image'" class="w-full px-20" />
-                                  <widget-image-text :asset="w" v-if="w.type == 'imageText'" class="w-full px-20" />
-                                  <widget-image-gallery :asset="w" v-if="w.type == 'imageGallery'" class="w-full px-20" />
-                                  <widget-image-gallery-list :asset="w" v-if="w.type == 'imageGalleryList'" class="w-full px-20" />
-                                  <widget-cta :asset="w" v-if="w.type == 'cta'" class="w-full px-20" />
-                                  <widget-pdf :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'pdf'" class="w-full px-20" />
-                                  <widget-contact-form :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'contactForm'"
-                                      class="w-full px-20" />
-                                  <widget-link :asset="w" v-if="w.type == 'link'" class="w-full px-20" />
-                                  <widget-video :class="isPdf ? 'hidden' : ''" :asset="w" v-if="w.type == 'video'" class="w-full px-20" />
-                                  <widget-map :asset="w" v-if="w.type == 'map'" class="w-full px-20" />
+                                  <widget-hero
+                    :asset="w"
+                    v-if="w.type == 'hero'"
+                    class="w-full"
+                  />
+                  <widget-executive-summary
+                    :asset="w"
+                    v-if="w.type == 'executiveSummary'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-header
+                    :asset="w"
+                    v-if="w.type == 'header'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-agents
+                    :asset="w"
+                    v-if="w.type == 'agents'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-text-area
+                    :asset="w"
+                    v-if="w.type == 'textArea'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-iframe
+                    :asset="w"
+                    v-if="w.type == 'iFrame'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-form
+                    :asset="w"
+                    :agent="agent"
+                    v-if="w.type == 'form'"
+                    class="w-full px-0 sm:px-20"
+                  />
+                  <widget-image
+                    :asset="w"
+                    v-if="w.type == 'image'"
+                    class="w-full sm:px-20"
+                  />
+                  <widget-image-text
+                    :asset="w"
+                    v-if="w.type == 'imageText'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-image-gallery
+                    :asset="w"
+                    v-if="w.type == 'imageGallery'"
+                    class="w-full sm:px-20"
+                  />
+                  <widget-image-gallery-list
+                    :asset="w"
+                    v-if="w.type == 'imageGalleryList'"
+                    class="w-full sm:px-20"
+                  />
+                  <widget-cta
+                    :asset="w"
+                    v-if="w.type == 'cta'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-pdf
+                    :asset="w"
+                    v-if="w.type == 'pdf'"
+                    class="w-full px-10 sm:px-20"
+                  />
+                  <widget-contact-form
+                    :asset="w"
+                    v-if="w.type == 'contactForm'"
+                    class="w-full px-10 sm:px-20 print:hidden"
+                  />
+                  <widget-link
+                    :asset="w"
+                    v-if="w.type == 'link'"
+                    class="w-full px-10 sm:px-20 "
+                  />
+                  <widget-video
+                    :asset="w"
+                    v-if="w.type == 'video'"
+                    class="w-full px-0 sm:px-20"
+                  />
+                  <widget-map
+                    :asset="w"
+                    v-if="w.type == 'map'"
+                    class="w-full px-10 sm:px-20"
+                  />
                               </div>
                           </div>
                       </div>
@@ -310,7 +377,7 @@ export default {
 
             const payload = {
                 to: email,
-                from: 'josh@jblventures.com.au',
+                from: 'jade@morganbusinesssales.com',
                 subject: `You have a question for ${this.webbook.title}`,
                 text: `This is a quesiton from ${this.enquire.name}. ${this.enquire.question} - from listing: ${this.webbook.title} - email: ${this.enquire.email} - phone: ${this.enquire.phone}`,
                 html: html
