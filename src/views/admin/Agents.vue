@@ -49,7 +49,7 @@
                                     </router-link>
                                 </td>
                                 <td class="text-sm text-vgreen cursor-pointer hover:underline">
-                                    <a href="mailto: josh@jblventures.com.au" class="text-sm truncate">{{ i.email }}</a>
+                                    <a href="mailto: jade@morganbusinesssales.com" class="text-sm truncate">{{ i.email }}</a>
                                 </td>
                                 <td class="text-sm text-vgreen cursor-pointer hover:underline">
                                     {{ i.phone }}

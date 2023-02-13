@@ -16,7 +16,7 @@
                                                 </div>
                                                 <div class="flex-shrink flex items-center ">
                                                      <a :href="v.link" target="_blank"
-                                                    class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-vgreen shadow-sm hover:bg-indigo-50">Open <span class="hidden sm:inline-block">Link</span>
+                                                    class="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-vgreen shadow-sm hover:bg-indigo-50">Open <span class="hidden sm:inline-block"> Link</span>
                                                     </a>
                                                 </div>
                                             </div>

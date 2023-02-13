@@ -166,6 +166,7 @@ export default {
         }
     },
     created() {
+        if(!this.currentUser) this.$router.push({name: 'SignIn'})
         this.getTenant()
         
     },

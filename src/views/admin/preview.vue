@@ -7,9 +7,11 @@
       style="z-index: 999999999999999999999999999999999999999"
     >
       <div class="w-full h-full flex items-center justify-center relative">
-
         <div class="w-96 bg-white shadow-lg p-10 rounded-xl relative">
-          <div class="absolute top-0 right-0 m-2" @click="showContactForm = false">
+          <div
+            class="absolute top-0 right-0 m-2"
+            @click="showContactForm = false"
+          >
             <svg
               class="w-10 text-gray-500 h-10"
               fill="none"
@@ -136,7 +138,7 @@
               <div
                 @click="
                   sendForm(agent.email),
-                  sendForm('jade@morganbusinesssales.com')
+                    sendForm('jade@morganbusinesssales.com')
                 "
                 class="
                   bg-vgreen
@@ -159,21 +161,11 @@
 
     <!-- Nav  -->
     <div
-      class="w-full fixed print:hidden "
+      class="w-full fixed print:hidden"
       style="z-index: 9999"
       v-if="!loading && passedValidation"
     >
-      <listing-nav :agent="agent" v-if="agent" />
-    </div>
-
-    <div class="print:hidden fixed bottom-0 left-0 mb-24 ml-4 w-52 mr-6" style="z-index: 9999999999999999999999999999">
-      <div
-        @click="generateReport()"
-        class="bg-white rounded shadow-lg p-3 rounded-lg cursor-pointer hover:bg-gray-100 text-gray-600 text-sm"
-      >
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s" class="w-10 h-10 object-cover inline-block" />
-        Print PDF
-      </div>
+      <listing-nav :agent="agent" v-if="agent" :showMobile="showMobile" />
     </div>
 
     <!-- Password Modal  -->
@@ -280,79 +272,195 @@
       v-if="!loading && passedValidation & (webbook.status == 'Active')"
       class="w-full flex flex-wrap sm:pt-20"
     >
-      <div  class="sm:flex-shrink print:hidden hidden sm:block">
+      <div class="sm:flex-shrink print:hidden hidden sm:block">
         <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg text-sm">
-          <div
-            class="w-full px-6"
-            v-for="(section, index) in item.sections"
-            :key="index"
-          >
-            <span
-              @click="scrollMeTo(section.title)"
-              v-if="section.status == 'Active'"
-              :class="
-                section.title == currentSection
-                  ? 'bg-vgreen text-white'
-                  : 'hover:bg-gray-200 cursor-pointer'
+          <div class="w-full flex flex-wrap h-full pb-24">
+            <div class="h-4/6 overflow-y-scroll z-50 w-full">
+              <div
+                class="w-full px-6"
+                v-for="(section, index) in item.sections"
+                :key="index"
+              >
+                <span
+                  @click="scrollMeTo(section.title)"
+                  v-if="section.status == 'Active'"
+                  :class="
+                    section.title == currentSection
+                      ? 'bg-vgreen text-white'
+                      : 'hover:bg-gray-200 cursor-pointer'
+                  "
+                  class="px-4 h-12 flex items-center cursor-pointer"
+                  >{{ section.title }}</span
+                >
+              </div>
+            </div>
+
+            <div   
+              class="
+                h-2/6
+                print:hidden
+                ml-4
+                left-0
+                w-70
+                mr-4
+                items-end flex flex-wrap
               "
-              class="px-4 h-12 flex items-center cursor-pointer"
-              >{{ section.title }}</span
             >
+              <div class="w-full">
+                <!-- language  -->
+              <div @click="showTranslation = !showTranslation"
+                class="
+                  w-52
+                  -mb-2
+                  hover:bg-gray-100
+                  cursor-pointer
+                  bg-white
+                  p-3
+                  h-16
+                  flex
+                  space-x-2
+                  rounded-lg
+                  shadow-lg
+                "
+              >
+                <div class="flex-shrink">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
+                    class="w-10 h-10 object-cover"
+                    alt=""
+                  />
+                </div>
+
+                <div class="flex-grow h-10 flex items-center">
+                  <h2 class="text-vgray text-sm">Change language</h2>
+                </div>
+              </div>
+
+              <!-- PDF  -->
+              <div class="print:hidden w-52 mr-6 mt-4">
+                <div
+                  @click="generateReport()"
+                  class="
+                    bg-white
+                    rounded
+                    shadow-lg
+                    p-3
+                    rounded-lg
+                    cursor-pointer
+                    hover:bg-gray-100
+                    text-gray-600 text-sm
+                  "
+                >
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
+                    class="w-10 h-10 object-cover inline-block"
+                  />
+                  Print PDF
+                </div>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div :class="showNav ? 'fixed top-0 left-0 h-full' : 'hidden'" style="z-index: 9999999999999999999999" class="print:hidden sm:hidden">
-        <div class="h-screen fixed w-10/12 bg-gray-100 text-sm px-4 py-10">
-          <div
-            class="w-full px-6"
-            v-for="(section, index) in item.sections"
-            :key="index"
-          >
-            <span
-              @click="scrollMeTo(section.title)"
-              v-if="section.status == 'Active'"
-              :class="
-                section.title == currentSection
-                  ? 'bg-vgreen text-white'
-                  : 'hover:bg-gray-200 cursor-pointer'
-              "
-              class="px-4 h-12 flex items-center cursor-pointer"
-              >{{ section.title }}</span
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- language  -->
       <div
-        @click="showTranslation = !showTranslation"
+        :class="showNav ? 'fixed top-0 left-0 h-full' : 'hidden'"
         style="z-index: 9999999999999999999999"
-        class="print:hidden fixed bottom-0 ml-4 left-0 w-70 mb-6 mr-4"
+        class="print:hidden sm:hidden"
       >
-        <div
-          class="
-            w-52 -mb-2
-            hover:bg-gray-100
-            cursor-pointer
-            bg-white
-            p-3 h-16
-            flex
-            space-x-2
-            rounded-lg
-            shadow-lg
-          "
-        >
-          <div class="flex-shrink">
+        <div class="h-full fixed w-9/12 bg-gray-100 text-sm pb-10 shadow-lg">
+          <div class="h-full flex flex-wrap">
+            <div class="h-1/5 w-full flex justify-center items-center bg-white">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
-              class="w-10 h-10 object-cover"
-              alt=""
-            />
+          width="200"
+          :src="require('@/assets/logo.png')"
+          alt="Morgan Business Sales" class="object-cover h-20"
+        />
+        </div>
+          <div class="h-3/5 px-4 overflow-y-scroll py-6">
+          <div
+            class="w-full px-6"
+            v-for="(section, index) in item.sections"
+            :key="index"
+          >
+            <span
+              @click="scrollMeTo(section.title), showNav = false"
+              v-if="section.status == 'Active'"
+              :class="
+                section.title == currentSection
+                  ? 'bg-vgreen text-white'
+                  : 'hover:bg-gray-200 cursor-pointer'
+              "
+              class="px-4 h-12 flex items-center cursor-pointer"
+              >{{ section.title }}</span
+            >
           </div>
+          </div>
+          <div   
+              class=" px-4
+                h-1/5
+                print:hidden
+                ml-4
+                left-0
+                w-70
+                mr-4
+                flex flex-wrap
+              "
+            >
+              <div class="w-full">
+                <!-- language  -->
+              <div @click="showTranslation = !showTranslation"
+                class="
+                  w-52
+                  hover:bg-gray-100
+                  cursor-pointer
+                  bg-white
+                  p-3
+                  h-16
+                  flex
+                  space-x-2
+                  rounded-lg
+                  shadow-lg
+                "
+              >
+                <div class="flex-shrink">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
+                    class="w-10 h-10 object-cover"
+                    alt=""
+                  />
+                </div>
 
-          <div class="flex-grow h-10 flex items-center">
-            <h2 class="text-vgray text-sm">Change language</h2>
+                <div class="flex-grow h-10 flex items-center">
+                  <h2 class="text-vgray text-sm">Change language</h2>
+                </div>
+              </div>
+
+              <!-- PDF  -->
+              <div class="print:hidden w-52 mr-6 mt-1">
+                <div
+                  @click="generateReport()"
+                  class="
+                    bg-white
+                    rounded
+                    shadow-lg
+                    p-3
+                    rounded-lg
+                    cursor-pointer
+                    hover:bg-gray-100
+                    text-gray-600 text-sm
+                  "
+                >
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
+                    class="w-10 h-10 object-cover inline-block"
+                  />
+                  Print PDF
+                </div>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -381,9 +489,9 @@
         </div>
       </div>
 
-      <div class="flex-grow print:pl-0 pl-0 sm:pl-56 pt-40 sm:pt-0">
+      <div class="flex-grow print:pl-0 pl-0 sm:pl-56 pt-40 sm:pt-20">
         <div class="w-full bg-white flex">
-          <section class="container mx-auto justify-center" slot="pdf-content">
+          <section class="max-w-7xl mx-auto justify-center" slot="pdf-content">
             <div
               class="w-full flex flex-wrap html2pdf__page-break print-pdf-break"
               v-for="(section, sIndex) in item.sections"
@@ -391,7 +499,8 @@
             >
               <div class="w-full" :id="toSlug(section.title)">
                 <div
-                  class="w-full flex flex-wrap print:my-20" :class="w.type == 'pageBreak' ? 'print-pdf-break' : ''"
+                  class="w-full flex flex-wrap print:my-20"
+                  :class="w.type == 'pageBreak' ? 'print-pdf-break' : ''"
                   v-for="(w, wIndex) in section.widgets"
                   :key="wIndex + 'w'"
                 >
@@ -469,7 +578,7 @@
                   <widget-link
                     :asset="w"
                     v-if="w.type == 'link'"
-                    class="w-full px-10 sm:px-20 "
+                    class="w-full px-10 sm:px-20"
                   />
                   <widget-video
                     :asset="w"
@@ -481,7 +590,6 @@
                     v-if="w.type == 'map'"
                     class="w-full px-10 sm:px-20"
                   />
-
                 </div>
               </div>
             </div>
@@ -489,7 +597,7 @@
         </div>
 
         <section class="w-full flex pdfFooter print:mb-10 py-6">
-          <div class="container mx-auto px-10 flex h-full items-center flex">
+          <div class="max-w-7xl mx-auto px-10 flex h-full items-center flex">
             <div class="flex-shrink mr-auto ml-4">
               <img
                 width="140"
@@ -605,7 +713,7 @@ export default {
 
       const payload = {
         to: email,
-        from: "josh@jblventures.com.au",
+        from: "jade@morganbusinesssales.com",
         subject: `You have a question for ${this.webbook.title}`,
         text: `This is a quesiton from ${this.enquire.name}. ${this.enquire.question} - from listing: ${this.webbook.title} - email: ${this.enquire.email} - phone: ${this.enquire.phone}`,
         html: html,
@@ -725,12 +833,14 @@ export default {
   
 
   <style lang="postcss">
-  @media print {
-  .print-pdf-break {page-break-after: always !important;}
+@media print {
+  .print-pdf-break {
+    page-break-after: always !important;
+  }
 
   /* .pdfFooter {
     position: fixed;
     bottom: 0;
   } */
 }
-  </style>
+</style>

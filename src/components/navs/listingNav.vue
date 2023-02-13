@@ -3,11 +3,10 @@
     <div class="flex h-36 bg-white items-center mx-auto px-2 relative">
       <div @click="showNav()" class="sm:hidden absolute top-0 right-0 h-36 mr-6">
         <div class="h-full flex items-center">
-          <div class="h-10 w-10 bg-gray-100 rounded flex items-center cursor-pointer hover:bg-vgreen group">
-            <div class="w-full py-2 px-2">
-              <div class="w-full h-1 rounded-full bg-gray-400 group-hover:bg-white"></div>
-              <div class="w-full h-1 my-1 rounded-full bg-gray-400 group-hover:bg-white"></div>
-              <div class="w-full h-1 rounded-full bg-gray-400 group-hover:bg-white"></div>
+          <div class="h-10 w-10 bg-gray-100 rounded flex items-center cursor-pointer group">
+            <div class="w-full py-2 px-2 text-center text-gray-700">
+              <i v-if="!showMobile" class="fa-solid fa-bars"></i>
+              <i v-if="showMobile" class="fa-solid fa-close"></i>
             </div>
           </div>
         </div>
@@ -105,7 +104,7 @@
 import { bus } from "../../main";
 
 export default {
-  props: ["agent"],
+  props: ["agent", "showMobile"],
   data() {
     return {
       navItems: [
