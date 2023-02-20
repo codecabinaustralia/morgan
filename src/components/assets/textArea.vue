@@ -14,7 +14,18 @@
         </div>
         <div class="w-full flex relative mb-2 p-6">
         
-    <VueTrix v-model="value.text" placeholder="Enter content" class="w-full h-56 text-sm text-vgray" />
+        <Editor
+      api-key="ro46jmm8pyp1r7u3q1yzh901ltvvlg76nh66fmny291sl4g0"
+      v-model="value.text"
+      
+      :init="{
+        menubar: false,
+        width: '100%',
+       toolbar: 'h1 h2 h3 h4 | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      }"
+    />
+
+    <!-- <VueTrix v-model="value.text" placeholder="Enter content" class="w-full h-56 text-sm text-vgray" /> -->
 
 
             </div>
@@ -28,6 +39,7 @@
 <script>
     import { bus } from '../../main'
     import VueTrix from "vue-trix";
+    import Editor from '@tinymce/tinymce-vue'
 
     export default {
         props:["asset"],
@@ -49,7 +61,8 @@
             }
         },
         components:{
-            VueTrix
+            VueTrix,
+            Editor
         },
         created(){
         if(this.asset.value) this.value = this.asset.value

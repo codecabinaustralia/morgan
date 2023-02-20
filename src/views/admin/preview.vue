@@ -273,7 +273,7 @@
       class="w-full flex flex-wrap sm:pt-20"
     >
       <div class="sm:flex-shrink print:hidden hidden sm:block">
-        <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg text-sm">
+        <div class="h-screen fixed w-60 bg-gray-100 pt-32 sm:pt-10 shadow-lg text-sm">
           <div class="w-full flex flex-wrap h-full pb-24">
             <div class="h-4/6 overflow-y-scroll z-50 w-full">
               <div
@@ -295,7 +295,7 @@
               </div>
             </div>
 
-            <div   
+            <div
               class="
                 h-2/6
                 print:hidden
@@ -303,61 +303,63 @@
                 left-0
                 w-70
                 mr-4
-                items-end flex flex-wrap
+                items-end
+                flex flex-wrap
               "
             >
               <div class="w-full">
                 <!-- language  -->
-              <div @click="showTranslation = !showTranslation"
-                class="
-                  w-52
-                  -mb-2
-                  hover:bg-gray-100
-                  cursor-pointer
-                  bg-white
-                  p-3
-                  h-16
-                  flex
-                  space-x-2
-                  rounded-lg
-                  shadow-lg
-                "
-              >
-                <div class="flex-shrink">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
-                    class="w-10 h-10 object-cover"
-                    alt=""
-                  />
-                </div>
-
-                <div class="flex-grow h-10 flex items-center">
-                  <h2 class="text-vgray text-sm">Change language</h2>
-                </div>
-              </div>
-
-              <!-- PDF  -->
-              <div class="print:hidden w-52 mr-6 mt-4">
                 <div
-                  @click="generateReport()"
+                  @click="showTranslation = !showTranslation"
                   class="
-                    bg-white
-                    rounded
-                    shadow-lg
-                    p-3
-                    rounded-lg
-                    cursor-pointer
+                    w-52
+                    -mb-2
                     hover:bg-gray-100
-                    text-gray-600 text-sm
+                    cursor-pointer
+                    bg-white
+                    p-3
+                    h-16
+                    flex
+                    space-x-2
+                    rounded-lg
+                    shadow-lg
                   "
                 >
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
-                    class="w-10 h-10 object-cover inline-block"
-                  />
-                  Print PDF
+                  <div class="flex-shrink">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
+                      class="w-10 h-10 object-cover"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="flex-grow h-10 flex items-center">
+                    <h2 class="text-vgray text-sm">Change language</h2>
+                  </div>
                 </div>
-              </div>
+
+                <!-- PDF  -->
+                <div class="print:hidden w-52 mr-6 mt-4">
+                  <div
+                    @click="generateReport()"
+                    class="
+                      bg-white
+                      rounded
+                      shadow-lg
+                      p-3
+                      rounded-lg
+                      cursor-pointer
+                      hover:bg-gray-100
+                      text-gray-600 text-sm
+                    "
+                  >
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
+                      class="w-10 h-10 object-cover inline-block"
+                    />
+                    Print PDF
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -372,33 +374,35 @@
         <div class="h-full fixed w-9/12 bg-gray-100 text-sm pb-10 shadow-lg">
           <div class="h-full flex flex-wrap">
             <div class="h-1/5 w-full flex justify-center items-center bg-white">
-            <img
-          width="200"
-          :src="require('@/assets/logo.png')"
-          alt="Morgan Business Sales" class="object-cover h-20"
-        />
-        </div>
-          <div class="h-3/5 px-4 overflow-y-scroll py-6">
-          <div
-            class="w-full px-6"
-            v-for="(section, index) in item.sections"
-            :key="index"
-          >
-            <span
-              @click="scrollMeTo(section.title), showNav = false"
-              v-if="section.status == 'Active'"
-              :class="
-                section.title == currentSection
-                  ? 'bg-vgreen text-white'
-                  : 'hover:bg-gray-200 cursor-pointer'
-              "
-              class="px-4 h-12 flex items-center cursor-pointer"
-              >{{ section.title }}</span
-            >
-          </div>
-          </div>
-          <div   
-              class=" px-4
+              <img
+                width="200"
+                :src="require('@/assets/logo.png')"
+                alt="Morgan Business Sales"
+                class="object-cover h-20"
+              />
+            </div>
+            <div class="h-3/5 px-4 overflow-y-scroll py-6">
+              <div
+                class="w-full px-6"
+                v-for="(section, index) in item.sections"
+                :key="index"
+              >
+                <span
+                  @click="scrollMeTo(section.title), (showNav = false)"
+                  v-if="section.status == 'Active'"
+                  :class="
+                    section.title == currentSection
+                      ? 'bg-vgreen text-white'
+                      : 'hover:bg-gray-200 cursor-pointer'
+                  "
+                  class="px-4 h-12 flex items-center cursor-pointer"
+                  >{{ section.title }}</span
+                >
+              </div>
+            </div>
+            <div
+              class="
+                px-4
                 h-1/5
                 print:hidden
                 ml-4
@@ -410,55 +414,56 @@
             >
               <div class="w-full">
                 <!-- language  -->
-              <div @click="showTranslation = !showTranslation"
-                class="
-                  w-52
-                  hover:bg-gray-100
-                  cursor-pointer
-                  bg-white
-                  p-3
-                  h-16
-                  flex
-                  space-x-2
-                  rounded-lg
-                  shadow-lg
-                "
-              >
-                <div class="flex-shrink">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
-                    class="w-10 h-10 object-cover"
-                    alt=""
-                  />
-                </div>
-
-                <div class="flex-grow h-10 flex items-center">
-                  <h2 class="text-vgray text-sm">Change language</h2>
-                </div>
-              </div>
-
-              <!-- PDF  -->
-              <div class="print:hidden w-52 mr-6 mt-1">
                 <div
-                  @click="generateReport()"
+                  @click="showTranslation = !showTranslation"
                   class="
-                    bg-white
-                    rounded
-                    shadow-lg
-                    p-3
-                    rounded-lg
-                    cursor-pointer
+                    w-52
                     hover:bg-gray-100
-                    text-gray-600 text-sm
+                    cursor-pointer
+                    bg-white
+                    p-3
+                    h-16
+                    flex
+                    space-x-2
+                    rounded-lg
+                    shadow-lg
                   "
                 >
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
-                    class="w-10 h-10 object-cover inline-block"
-                  />
-                  Print PDF
+                  <div class="flex-shrink">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png"
+                      class="w-10 h-10 object-cover"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="flex-grow h-10 flex items-center">
+                    <h2 class="text-vgray text-sm">Change language</h2>
+                  </div>
                 </div>
-              </div>
+
+                <!-- PDF  -->
+                <div class="print:hidden w-52 mr-6 mt-1">
+                  <div
+                    @click="generateReport()"
+                    class="
+                      bg-white
+                      rounded
+                      shadow-lg
+                      p-3
+                      rounded-lg
+                      cursor-pointer
+                      hover:bg-gray-100
+                      text-gray-600 text-sm
+                    "
+                  >
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm3330NBGjlAd5kJ6wSI5PxN2l0lUlJvIkTJrEZgI&s"
+                      class="w-10 h-10 object-cover inline-block"
+                    />
+                    Print PDF
+                  </div>
+                </div>
               </div>
             </div>
           </div>

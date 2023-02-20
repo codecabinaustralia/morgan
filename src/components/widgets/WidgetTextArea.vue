@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="w-full" v-html="asset.value.text"></div>
+        <div class="w-full widgetTextArea" v-html="asset.value.text"></div>
     </section>
 </template>
 
@@ -11,6 +11,30 @@ export default {
 </script>
 
 <style lang="postcss">
+.widgetTextArea h4{
+    /* font-weight: bold; */
+    font-size: 1.25rem;
+    color: #367A4D;
+}
+
+.widgetTextArea h3{
+    /* font-weight: bold; */
+    font-size:1.5rem;
+    color: #367A4D;
+}
+
+.widgetTextArea h2{
+    /* font-weight: bold; */
+    font-size:1.875rem;
+    color: #367A4D;
+}
+
+.widgetTextArea h1{
+    /* font-weight: bold; */
+    font-size:2.00rem;
+    color: #367A4D;
+}
+
 ul { 
     list-style-type: disc !important; 
     list-style-position: inside !important; 

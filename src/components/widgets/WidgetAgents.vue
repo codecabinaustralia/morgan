@@ -19,6 +19,14 @@
                 <div class="flex-grow text-vgreen cursor-pointer hover:text-green-600">
                     {{agent.phone}}</div>
             </div>
+            <div class="w-full flex">
+                <div class="flex-shrink">
+                    <div class="hidden sm:block w-40 header-bold tracking-tight text-vgraySuperDark text-sm">
+                        Head Office</div>
+                </div>
+                <div class="flex-grow text-vgreen cursor-pointer hover:text-green-600">
+                    1300 577 297</div>
+            </div>
 
 
             <div class="w-full flex">

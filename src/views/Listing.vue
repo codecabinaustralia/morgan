@@ -290,7 +290,7 @@
       class="w-full flex flex-wrap pt-32"
     >
       <div class="sm:flex-shrink print:hidden hidden sm:block">
-        <div class="h-screen fixed w-60 bg-gray-100 pt-32 shadow-lg text-sm">
+        <div class="h-screen fixed w-60 bg-gray-100 pt-10 sm:pt-32 shadow-lg text-sm">
           <div class="w-full flex flex-wrap h-full pb-24">
             <div class="h-4/6 overflow-y-scroll z-50 w-full">
               <div

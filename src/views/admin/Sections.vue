@@ -41,7 +41,7 @@
                 <div v-if="loading" class="w-full flex items-center mt-20">
                 <preloader class="bg-white rounded-lg p-4 h-20 w-20 mx-auto flex items-center justify-center" />
             </div>
-                <div v-if="!loading" class="w-3/4 mr-4 mb-4 bg-white rounded-lg p-4">
+                <div v-if="!loading && item" class="w-3/4 mr-4 mb-4 bg-white rounded-lg p-4">
                     <h2 class="header-semiBold text-vgrayDark mb-2">Data Room Details</h2>
                     <input type="text" v-model="item.title" placeholder="Web Book title" class="my-2 input">
                 </div>
@@ -166,8 +166,8 @@
 
                             <div class="w-full mb-2">
                                 <h2 class="text-vgray text-sm">Assigned Agent</h2>
-                
                     <select v-model="item.agent" name="" class="input" id="">
+                       
                         <option :value="agent" v-for="(agent, aAndex) in agents" :key="aAndex + 'Agent'">
                             {{agent.firstName}} {{agent.lastName}}
                         </option>
@@ -278,6 +278,7 @@ import Preloader from "@/components/loader"
             },
 
             async getAgents() {
+         
             // reset items and set loader
             this.items = []
             this.loading = true
@@ -291,7 +292,7 @@ import Preloader from "@/components/loader"
                 this.$set(obj, "id", doc.id)
                 // push items to array
                 this.agents.push(obj)
-                this.item.agent = this.agents[0]
+                if(!this.item.agent) this.item.agent = this.agents[0]
             });
             // finish loading
             this.loading = false
@@ -299,6 +300,7 @@ import Preloader from "@/components/loader"
             async saveItem(){
                 console.log("this/ item", this.item)
                 await setDoc(doc(db, "webbooks", this.$route.params.id), this.item);
+                this.$router.push('/')
             },
             async getWebbook(){
                 this.loading = true
@@ -312,8 +314,11 @@ import Preloader from "@/components/loader"
                     this.item = obj
                     this.getAgents()
                     this.loading = false
+                    // this.$router.push('/')
+
                 } else {
                     this.loading = false
+                    // this.$router.push('/')
                 }
             },
             addSection(){

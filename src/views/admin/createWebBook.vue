@@ -10,7 +10,7 @@
                 <assetAgents v-if="currentAsset.widget.type == 'agents'" :asset="currentAsset.widget" />
                 <assetHeader v-if="currentAsset.widget.type == 'header'" :asset="currentAsset.widget" />
                 <assetCta v-if="currentAsset.widget.type == 'cta'" :asset="currentAsset.widget" />
-                <assetTextArea v-if="currentAsset.widget.type == 'textArea'" :asset="currentAsset.widget" />
+                <assetTextArea v-if="currentAsset.widget.type == 'textArea'"  :asset="currentAsset.widget" />
                 <assetForm v-if="currentAsset.widget.type == 'form'" :asset="currentAsset.widget" />
                 <assetExecutiveSummary v-if="currentAsset.widget.type == 'executiveSummary'"
                     :asset="currentAsset.widget" />
@@ -304,6 +304,8 @@ export default {
 
             await setDoc(doc(db, "webbooks", this.$route.params.id), obj);
             this.getWebbook()
+            // Redirect instead
+            // this.$router.push({name: 'Sections', params: {id: this.$route.params.id}})
         },
         async getWebbook() {
             this.loading = true
