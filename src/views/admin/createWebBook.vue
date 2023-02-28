@@ -238,12 +238,12 @@ export default {
                 //     icon: "a",
                 //     value: ""
                 // },
-                {
-                    title: "PDF",
-                    type: "pdf",
-                    icon: "a",
-                    value: ""
-                },
+                // {
+                //     title: "PDF",
+                //     type: "pdf",
+                //     icon: "a",
+                //     value: ""
+                // },
                 {
                     title: "Gallery List",
                     type: "imageGalleryList",

@@ -15,13 +15,18 @@
         <div class="w-full flex relative mb-2 p-6">
         
         <Editor
-      api-key="ro46jmm8pyp1r7u3q1yzh901ltvvlg76nh66fmny291sl4g0"
+      api-key="py4bz8s1cgbkq688ajxywxypfewcn4gzgr21dhj0u3sa23vx"
       v-model="value.text"
-      
       :init="{
         menubar: false,
         width: '100%',
-       toolbar: 'h1 h2 h3 h4 | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        plugins: 'link',
+        default_link_target: '_blank',
+        selector: 'textarea',
+        convert_urls: false,
+        relative_urls: false,
+remove_script_host: false,
+       toolbar: 'p | h1 h2 h3 h4 | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | checklist numlist bullist indent outdent',
       }"
     />
 

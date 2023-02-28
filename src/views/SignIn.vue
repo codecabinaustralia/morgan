@@ -74,7 +74,7 @@ export default {
                 .then(async (userCredential) => {
                     const docRef = doc(db, "users", userCredential.user.uid);
                     const docSnap = await getDoc(docRef);
-                    
+                    console.log("userCredential.user.uid", userCredential.user.uid)
                     if (docSnap.exists()) {
                         // Save current user
                         this.$store.commit("updateState", { state: "currentUser", body: docSnap.data() })

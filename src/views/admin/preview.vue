@@ -274,7 +274,7 @@
     >
       <div class="sm:flex-shrink print:hidden hidden sm:block">
         <div class="h-screen fixed w-60 bg-gray-100 pt-32 sm:pt-10 shadow-lg text-sm">
-          <div class="w-full flex flex-wrap h-full pb-24">
+          <div class="w-full flex flex-wrap h-full pb-24 pt-10">
             <div class="h-4/6 overflow-y-scroll z-50 w-full">
               <div
                 class="w-full px-6"
@@ -289,7 +289,7 @@
                       ? 'bg-vgreen text-white'
                       : 'hover:bg-gray-200 cursor-pointer'
                   "
-                  class="px-4 h-12 flex items-center cursor-pointer"
+                  class="px-4 h-12 flex items-center cursor-pointer leading-none my-4"
                   >{{ section.title }}</span
                 >
               </div>

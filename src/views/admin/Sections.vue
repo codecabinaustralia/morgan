@@ -300,7 +300,7 @@ import Preloader from "@/components/loader"
             async saveItem(){
                 console.log("this/ item", this.item)
                 await setDoc(doc(db, "webbooks", this.$route.params.id), this.item);
-                this.$router.push('/')
+                // this.$router.push('/')
             },
             async getWebbook(){
                 this.loading = true
@@ -343,7 +343,7 @@ import Preloader from "@/components/loader"
             },
             duplicateRow(index){
                this.item.sections.push(this.item.sections[index])
-                
+                this.saveItem()
             },
             preview(){
             this.$store.commit("updateState", {state: "preview", body: this.item})
